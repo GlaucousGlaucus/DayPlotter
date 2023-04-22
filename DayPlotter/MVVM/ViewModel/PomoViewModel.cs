@@ -16,6 +16,14 @@ namespace DayPolotter.MVVM.ViewModel
         public RelayCommand StartTimer { get; set; }
         private DispatcherTimer _timer;
         private double _currentTime;
+        private string _timerBoxTime;
+
+        public string TimerBoxTime
+        {
+            get { return _timerBoxTime; }
+            set { _timerBoxTime = value; OnPropertyChanged(); }
+        }
+
 
         public double CurrentTime
         {
@@ -62,6 +70,7 @@ namespace DayPolotter.MVVM.ViewModel
         public PomoViewModel()
         {
             StartStopText = "Start";
+            TimerBoxTime = "";
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(1000);
             _timer.Tick += new EventHandler(timer_ticks);

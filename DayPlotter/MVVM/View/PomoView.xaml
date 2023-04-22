@@ -5,21 +5,49 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DayPolotter.MVVM.View"
              xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
+             xmlns:Converters="clr-namespace:DayPolotter.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Tomato">
+    <UserControl.Resources>
+        <Converters:TimeConverter x:Key="TimeConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <viewModel:PomoViewModel/>
     </UserControl.DataContext>
 
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <TextBox Style="{DynamicResource PomoTimerTheme}" Text="{Binding CurrentTime, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="20"/>
+            <!--<TextBox Style="{DynamicResource PomoTimerTheme}" Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                     FontSize="20"/>-->
+            <Grid Width="200" Height="200">
+                <Ellipse Width="200" Height="200"
+                         StrokeThickness="5"
+                         Stroke="Wheat"
+                         IsHitTestVisible="False"/>
+                <!-- Need to Create a Dependacy Property for this stupid thing
+                Why do i like to inflict pain on myself ?
+                Cuz it will be worth it...mb-->
+                <TextBox Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                         Height="40" 
+                         Margin="38,0,0,0"
+                         FontSize="35" 
+                         Background="Transparent"
+                         Foreground="White"
+                         PreviewTextInput="TimeTextBox_PreviewTextInput"
+                         BorderThickness="0"/>
+                <!--<TextBlock Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="White"
+                           FontSize="35"
+                           Margin="38,75,0,0"
+                           x:Name="TimeDisplay">
+                </TextBlock>-->
+            </Grid>
             <Button Width="150"
                     Height="30"
                     Content="{Binding StartStopText}"
-                    Command="{Binding StartTimer}"/>
+                    Command="{Binding StartTimer}"
+                    Margin="0,50,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>
