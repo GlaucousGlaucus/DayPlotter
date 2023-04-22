@@ -1,0 +1,102 @@
+﻿<!-- https://colorhunt.co/palette/a6d0ddff6969ffd3b0fff9de -->
+<!-- A6D0DD FF6969 FFD3B0 FFF9DE-->
+
+<Window x:Class="DayPolotter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DayPolotter"
+        xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Width="1200" Height="800" 
+        WindowStyle="None"
+        Background="#FFF9DE"
+        ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#FFD3B0"
+                MouseDown="DragWindow"
+                Grid.ColumnSpan="2"/>
+
+        <Label Content="DayPlotter"
+               Grid.Row="0"
+               FontSize="20"
+               Margin="10,-5,0,0"
+               Foreground="#b35000"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    Grid.ColumnSpan="2">
+
+            <Button Width="30"
+                    Height="30"
+                    Content="🗕"
+                    Margin="0,0,2,0"
+                    Padding="0,0,0,5"
+                    Style="{StaticResource ButtonTheme1}"
+                    Click="MinimizeWindow"/>
+            <!--<Button Width="20"
+                    Height="20"
+                    Content="□"
+                    FontSize="20"
+                    Padding="0,0,0,5"
+                    Margin="0,0,2,0"
+                    Style="{StaticResource ButtonTheme1}"
+                    Click="MaxNormWindow"/>-->
+            <Button Width="30"
+                    Height="30"
+                    Content="✕"
+                    Style="{StaticResource ButtonTheme1}"
+                    Click="CloseWindow"/>
+
+        </StackPanel>
+
+        <Border Background="#A6D0DD"
+                Grid.Row="1"/>
+
+        <StackPanel Grid.Row="1"
+                    Margin="0,50,0,0">
+            <RadioButton Content="Home"
+                         FontSize="25"
+                         Foreground="White"
+                         IsChecked="True"
+                         Style="{StaticResource RadioBtnTheme}"
+                         Command="{Binding HomeViewCommand}"/>
+            <RadioButton Content="Pomodoro"
+                         FontSize="25"
+                         Foreground="White"
+                         Style="{StaticResource RadioBtnTheme}"
+                         Command="{Binding PomoViewCommand}"/>
+            <RadioButton Content="Task"
+                         FontSize="25"
+                         Foreground="White"
+                         Style="{StaticResource RadioBtnTheme}"
+                         Command="{Binding TaskViewCommand}"/>
+        </StackPanel>
+
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10"
+                        Content="{Binding CurrentView}"/>
+        <Label Content="DayPlotter (c) by Arpit Benjamin"
+               Grid.Row="1"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"
+               FontSize="10"
+               Margin="0,0,0,-2"/>
+    </Grid>
+</Window>

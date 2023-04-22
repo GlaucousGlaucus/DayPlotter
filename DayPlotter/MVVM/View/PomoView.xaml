@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="DayPolotter.MVVM.View.PomoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DayPolotter.MVVM.View"
+             xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Tomato">
+    <UserControl.DataContext>
+        <viewModel:PomoViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBox Style="{DynamicResource PomoTimerTheme}" Text="{Binding CurrentTime, UpdateSourceTrigger=PropertyChanged}"
+                     FontSize="20"/>
+            <Button Width="150"
+                    Height="30"
+                    Content="{Binding StartStopText}"
+                    Command="{Binding StartTimer}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

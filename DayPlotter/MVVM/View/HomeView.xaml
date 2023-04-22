@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="DayPolotter.MVVM.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DayPolotter.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <ScrollViewer HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  VerticalScrollBarVisibility="Hidden">
+        <StackPanel Margin="25,0,0,0">
+            <Label Content="Welcome"
+                   FontSize="25"
+                   Foreground="#b35000"
+                   FontWeight="DemiBold"/>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <FlowDocumentScrollViewer Foreground="#b35000"
+                                        Width="700"
+                                        Margin="30,0,0,0"
+                                        IsToolBarVisible="False"
+                                        VerticalScrollBarVisibility="Hidden">
+                        <FlowDocument Background="#f0eFcF"
+                                      FontFamily="ComicSansMs"
+                                      FontSize="20">
+                            <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Grid>
+            </StackPanel>
+            <Label Content="Featues"
+                   FontSize="25"
+                   Foreground="#b35000"
+                   FontWeight="DemiBold"/>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <FlowDocumentScrollViewer Foreground="#b35000"
+                                        Width="700"
+                                        Margin="30,0,0,0"
+                                        IsToolBarVisible="False"
+                                        VerticalScrollBarVisibility="Hidden">
+                        <FlowDocument Background="#f0eFcF"
+                                      FontFamily="ComicSansMs"
+                                      FontSize="20">
+                            <Paragraph>This app provides you with these Qol Features: </Paragraph>
+                            <List>
+                                <ListItem>
+                                    <Paragraph>Pomodoro Timer</Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>A Task Checklist</Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>Focus Mode</Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>Your Performance Status</Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

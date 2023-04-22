@@ -1,0 +1,87 @@
+﻿using DayPolotter.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
+
+namespace DayPolotter.MVVM.ViewModel
+{
+
+	class PomoViewModel : ObservableObject
+    {
+
+        public RelayCommand StartTimer { get; set; }
+        private DispatcherTimer _timer;
+        private double _currentTime;
+
+        public double CurrentTime
+        {
+            get { return _currentTime; }
+            set { _currentTime = value; OnPropertyChanged(); }
+        }
+
+        public DispatcherTimer Timer
+        {
+            get { return _timer; }
+            set { _timer = value; OnPropertyChanged(); }
+        }
+
+        private void timer_ticks(object sender, EventArgs e)
+        {
+            CurrentTime -= 1;
+            if (CurrentTime == 0)
+            {
+                _timer.Stop();
+                StartStopText = "Start";
+            }
+        }
+
+        private string _startStopText;
+
+        public string StartStopText
+        {
+            get { return _startStopText; }
+            set { _startStopText = value; OnPropertyChanged(); Console.WriteLine(value);}
+        }
+
+        private int CONTDOWN_TIME_IN_SEC = 30;
+
+
+        public string StartStopBtnText()
+        {
+            if (_timer.IsEnabled)
+            {
+                return "Stop";
+            }
+            return "Start";
+        }
+
+        public PomoViewModel()
+        {
+            StartStopText = "Start";
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(1000);
+            _timer.Tick += new EventHandler(timer_ticks);
+            CurrentTime = CONTDOWN_TIME_IN_SEC;
+            StartTimer = new RelayCommand(o =>
+            {
+                if (_timer.IsEnabled)
+                {
+                    _timer.Stop();
+                    StartStopText = "Start";
+                } else
+                {
+                    if (CurrentTime <= 0)
+                    {
+                        CurrentTime = CONTDOWN_TIME_IN_SEC;
+                    }
+                    _timer.Start();
+                    StartStopText = "Stop";
+                }
+            });
+        }
+    }
+}
