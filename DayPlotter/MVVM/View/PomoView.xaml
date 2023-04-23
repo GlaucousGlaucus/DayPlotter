@@ -17,9 +17,17 @@
     </UserControl.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="POMODORO TIMER"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontWeight="SemiBold"
+                   Margin="0,20,0,0"/>
         <StackPanel VerticalAlignment="Center">
-            <!--<TextBox Style="{DynamicResource PomoTimerTheme}" Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="20"/>-->
             <Grid Width="200" Height="200">
                 <Ellipse Width="200" Height="200"
                          StrokeThickness="5"
@@ -37,11 +45,33 @@
                          BorderThickness="0"
                          x:Name="TimeBox"/>
                 </Grid>
-            <Button Width="150"
-                    Height="30"
+            <Button Width="40"
+                    Height="40"
+                    FontSize="30"
+                    Padding="0,-5,0,0"
+                    Background="Transparent"
+                    BorderThickness="2"
+                    BorderBrush="Wheat"
                     Content="{Binding StartStopText}"
                     Command="{Binding StartTimer}"
                     Margin="0,50,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="TIMER PRESETS"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontWeight="SemiBold"
+                   Margin="0,20,0,0"/>
+                <StackPanel Grid.Row="1">
+                    
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>
