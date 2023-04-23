@@ -25,24 +25,18 @@
                          StrokeThickness="5"
                          Stroke="Wheat"
                          IsHitTestVisible="False"/>
-                <!-- Need to Create a Dependacy Property for this stupid thing
-                Why do i like to inflict pain on myself ?
-                Cuz it will be worth it...mb-->
-                <TextBox Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding CurrentTime,
+                    UpdateSourceTrigger=PropertyChanged}"
                          Height="40" 
                          Margin="38,0,0,0"
-                         FontSize="35" 
+                         FontSize="35"
                          Background="Transparent"
                          Foreground="White"
                          PreviewTextInput="TimeTextBox_PreviewTextInput"
-                         BorderThickness="0"/>
-                <!--<TextBlock Text="{Binding CurrentTime, Converter={StaticResource TimeConverter}, UpdateSourceTrigger=PropertyChanged}"
-                           Foreground="White"
-                           FontSize="35"
-                           Margin="38,75,0,0"
-                           x:Name="TimeDisplay">
-                </TextBlock>-->
-            </Grid>
+                         PreviewKeyDown="TimeBox_KeyPrev"
+                         BorderThickness="0"
+                         x:Name="TimeBox"/>
+                </Grid>
             <Button Width="150"
                     Height="30"
                     Content="{Binding StartStopText}"
