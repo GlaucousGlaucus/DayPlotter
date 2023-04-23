@@ -9,9 +9,17 @@ namespace DayPolotter.MVVM.ViewModel
     {
 
         public RelayCommand StartTimer { get; set; }
-        private DispatcherTimer _timer;
-        private string _btn_start_text = "⏵︎";
-        private string _btn_stop_text = "⏸︎";
+        public RelayCommand ResetTimer { get; set; }
+        public RelayCommand BreakTimeTimer { get; set; }
+
+        private TimeSpan _startedFrom;
+
+        public TimeSpan StartedFrom
+        {
+            get { return _startedFrom; }
+            set { _startedFrom = value; OnPropertyChanged(); }
+        }
+
 
         private bool _isFinished;
 
@@ -39,6 +47,8 @@ namespace DayPolotter.MVVM.ViewModel
             set { _currentTime = value; OnPropertyChanged(); }
         }
 
+
+        private DispatcherTimer _timer;
         public DispatcherTimer Timer
         {
             get { return _timer; }
@@ -47,12 +57,13 @@ namespace DayPolotter.MVVM.ViewModel
 
         private void timer_ticks(object sender, EventArgs e)
         {
-            CurrentTime -= new TimeSpan(0,0,1);
-            if (CurrentTime.TotalSeconds == 0)
+            CurrentTime -= new TimeSpan(0, 0, 1);
+            if (CurrentTime.TotalSeconds <= 0)
             {
                 _timer.Stop();
                 IsFinished = true;
-                StartStopText = _btn_start_text;
+                StartStopText = StartStopBtnText();
+                
             }
         }
 
@@ -61,19 +72,37 @@ namespace DayPolotter.MVVM.ViewModel
         public string StartStopText
         {
             get { return _startStopText; }
-            set { _startStopText = value; OnPropertyChanged();}
+            set { _startStopText = value; OnPropertyChanged(); }
         }
 
-        private TimeSpan CONTDOWN_TIME_IN_SEC = new TimeSpan(0,25,0);
+        private TimeSpan _countdownTime;
+
+        public TimeSpan CountDownTime
+        {
+            get { return _countdownTime; }
+            set { _countdownTime = value; OnPropertyChanged(); }
+        }
+
+        private TimeSpan _breakTime;
+
+        public TimeSpan BreakTime
+        {
+            get { return _breakTime; }
+            set { _breakTime = value; OnPropertyChanged(); }
+        }
+
+
+
+        //TODO the timers configurable
+        //private TimeSpan COUNTDOWN_TIME = new TimeSpan(0, 25, 0);
+        //private TimeSpan BREAK_TIME = new TimeSpan(0, 5, 0);
+        private string _btn_start_text = "Pl";
+        private string _btn_stop_text = "Pa";
 
 
         public string StartStopBtnText()
         {
-            if (_timer.IsEnabled)
-            {
-                return _btn_stop_text;
-            }
-            return _btn_start_text;
+            return _timer.IsEnabled ? _btn_stop_text : _btn_start_text;
         }
 
         public PomoViewModel()
@@ -82,21 +111,34 @@ namespace DayPolotter.MVVM.ViewModel
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(1000);
             _timer.Tick += new EventHandler(timer_ticks);
-            CurrentTime = CONTDOWN_TIME_IN_SEC;
+            CountDownTime = new TimeSpan(0, 25, 0);
+            BreakTime = new TimeSpan(0, 5, 0);
+            CurrentTime = CountDownTime;
             IsFinished = false;
             StartTimer = new RelayCommand(o =>
             {
-                if (_timer.IsEnabled)
+                if (_timer.IsEnabled) { _timer.Stop(); }
+                else
                 {
-                    _timer.Stop();
-                    StartStopText = _btn_start_text;
-                } else
-                {
-                    if (CurrentTime.TotalSeconds <= 0) CurrentTime = CONTDOWN_TIME_IN_SEC;
+                    if (CurrentTime.TotalSeconds <= 0) CurrentTime = StartedFrom;
                     _timer.Start();
-                    StartStopText = _btn_stop_text;
+                    StartedFrom = CurrentTime;
                     IsFinished = false;
                 }
+                StartStopText = StartStopBtnText();
+            });
+            ResetTimer = new RelayCommand(o =>
+            {
+                if (_timer.IsEnabled) _timer.Stop();
+                CurrentTime = StartedFrom;
+                StartStopText = StartStopBtnText();
+            });
+            BreakTimeTimer = new RelayCommand(_ => {
+                if (_timer.IsEnabled) _timer.Stop();
+                StartedFrom = CurrentTime = BreakTime;
+                _timer.Start();
+                IsFinished = false;
+                StartStopText = StartStopBtnText();
             });
         }
     }

@@ -8,10 +8,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/Util/AppColorHome.xaml"/>
+                <ResourceDictionary Source="./Themes/Util/AppTextHome.xaml"/>
+                <ResourceDictionary Source="./Assets/Icons/SVGS.xaml"/>
                 <ResourceDictionary Source="./Themes/ButtonTheme1.xaml"/>
                 <ResourceDictionary Source="./Themes/RadioBtnTheme.xaml"/>
                 <ResourceDictionary Source="./Themes/PomoTimerTheme.xaml"/>
                 <ResourceDictionary Source="./Themes/PomoTimerTheme2.xaml"/>
+                <ResourceDictionary Source="./Themes/TimerPresetTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/TimerControlBtnTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

@@ -13,54 +13,32 @@
         <StackPanel Margin="25,0,0,0">
             <Label Content="Welcome"
                    FontSize="25"
-                   Foreground="#b35000"
+                   Foreground="{StaticResource App.Colors.Main.Heading}"
                    FontWeight="DemiBold"/>
             <StackPanel Orientation="Horizontal">
                 <Grid>
-                    <FlowDocumentScrollViewer Foreground="#b35000"
-                                        Width="700"
-                                        Margin="30,0,0,0"
-                                        IsToolBarVisible="False"
-                                        VerticalScrollBarVisibility="Hidden">
-                        <FlowDocument Background="#f0eFcF"
-                                      FontFamily="ComicSansMs"
-                                      FontSize="20">
-                            <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-                        </FlowDocument>
-                    </FlowDocumentScrollViewer>
+                    <FlowDocumentScrollViewer 
+                        Width="700"
+                        Margin="30,0,0,0"
+                        Unloaded="FlowDocumentScrollViewer_Unloaded"
+                        Document="{StaticResource App.Doc.Welcome}"
+                        IsToolBarVisible="False"
+                        VerticalScrollBarVisibility="Hidden"/>
                 </Grid>
             </StackPanel>
             <Label Content="Featues"
                    FontSize="25"
-                   Foreground="#b35000"
+                   Foreground="{StaticResource App.Colors.Main.Heading}"
                    FontWeight="DemiBold"/>
             <StackPanel Orientation="Horizontal">
                 <Grid>
-                    <FlowDocumentScrollViewer Foreground="#b35000"
-                                        Width="700"
-                                        Margin="30,0,0,0"
-                                        IsToolBarVisible="False"
-                                        VerticalScrollBarVisibility="Hidden">
-                        <FlowDocument Background="#f0eFcF"
-                                      FontFamily="ComicSansMs"
-                                      FontSize="20">
-                            <Paragraph>This app provides you with these Qol Features: </Paragraph>
-                            <List>
-                                <ListItem>
-                                    <Paragraph>Pomodoro Timer</Paragraph>
-                                </ListItem>
-                                <ListItem>
-                                    <Paragraph>A Task Checklist</Paragraph>
-                                </ListItem>
-                                <ListItem>
-                                    <Paragraph>Focus Mode</Paragraph>
-                                </ListItem>
-                                <ListItem>
-                                    <Paragraph>Your Performance Status</Paragraph>
-                                </ListItem>
-                            </List>
-                        </FlowDocument>
-                    </FlowDocumentScrollViewer>
+                    <FlowDocumentScrollViewer 
+                        Width="700"
+                        Margin="30,0,0,0"
+                        Unloaded="FlowDocumentScrollViewer_Unloaded"
+                        Document="{StaticResource App.Doc.Features}"
+                        IsToolBarVisible="False"
+                        VerticalScrollBarVisibility="Hidden"/>
                 </Grid>
             </StackPanel>
         </StackPanel>

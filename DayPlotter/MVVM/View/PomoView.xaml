@@ -9,9 +9,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Tomato">
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <Converters:TimeConverter x:Key="TimeConverter"/>
-    </UserControl.Resources>
+    </UserControl.Resources>-->
     <UserControl.DataContext>
         <viewModel:PomoViewModel/>
     </UserControl.DataContext>
@@ -24,14 +24,14 @@
         <TextBlock Text="POMODORO TIMER"
                    FontSize="30"
                    HorizontalAlignment="Center"
-                   Foreground="White"
+                   Foreground="{StaticResource App.Colors.Pomo.Heading}"
                    FontWeight="SemiBold"
                    Margin="0,20,0,0"/>
         <StackPanel VerticalAlignment="Center">
-            <Grid Width="200" Height="200">
+            <Grid Width="200" Height="300">
                 <Ellipse Width="200" Height="200"
                          StrokeThickness="5"
-                         Stroke="Wheat"
+                         Stroke="{StaticResource App.Colors.Pomo.TimerBorder}"
                          IsHitTestVisible="False"/>
                 <TextBox Text="{Binding CurrentTime,
                     UpdateSourceTrigger=PropertyChanged}"
@@ -39,22 +39,84 @@
                          Margin="38,0,0,0"
                          FontSize="35"
                          Background="Transparent"
-                         Foreground="White"
+                         Foreground="{StaticResource App.Colors.Pomo.Timer}"
                          PreviewTextInput="TimeTextBox_PreviewTextInput"
                          PreviewKeyDown="TimeBox_KeyPrev"
                          BorderThickness="0"
                          x:Name="TimeBox"/>
-                </Grid>
-            <Button Width="40"
-                    Height="40"
-                    FontSize="30"
-                    Padding="0,-5,0,0"
-                    Background="Transparent"
-                    BorderThickness="2"
-                    BorderBrush="Wheat"
-                    Content="{Binding StartStopText}"
+            </Grid>
+            <StackPanel Orientation="Horizontal" 
+                        Width="100">
+                <Button Style="{DynamicResource TimerControlBtnTheme}" 
                     Command="{Binding StartTimer}"
-                    Margin="0,50,0,0"/>
+                    Margin="0,0,0,0">
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="{StaticResource play_lightDrawingImage}"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Pa"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Source" Value="{StaticResource pauseDrawingImage}"/>
+                                    </MultiDataTrigger>
+                                    
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Pl"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Source" Value="{StaticResource playDrawingImage}"/>
+                                    </MultiDataTrigger>
+                                    
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="False"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Pa"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Source" Value="{StaticResource pause_lightDrawingImage}"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Button>
+
+                <Button Style="{DynamicResource TimerControlBtnTheme}"
+                    Command="{Binding ResetTimer}"
+                    Margin="20,0,0,0">
+                    <Image Width="30" Height="30">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="{StaticResource replay_lightDrawingImage}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="{StaticResource replayDrawingImage}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Button>
+            </StackPanel>
+            <Button Style="{DynamicResource TimerControlBtnTheme}"
+                    Margin="0,10,0,0"    
+                    Command="{Binding BreakTimeTimer}"
+                    Width="200">
+                <TextBlock Text="Take a Break">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Grid>
@@ -65,11 +127,13 @@
                 <TextBlock Text="TIMER PRESETS"
                    FontSize="30"
                    HorizontalAlignment="Center"
-                   Foreground="White"
+                   Foreground="{StaticResource App.Colors.Pomo.Heading}"
                    FontWeight="SemiBold"
                    Margin="0,20,0,0"/>
                 <StackPanel Grid.Row="1">
-                    
+                    <ListView Style="{DynamicResource TimerPresetTheme}">
+                        <ListViewItem Content="Todo"/>
+                    </ListView>
                 </StackPanel>
             </Grid>
         </StackPanel>

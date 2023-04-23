@@ -1,0 +1,237 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Geometry x:Key="timerGeometry">F1 M960,960z M0,0z M600,896Q466,896 373,803 280,710 280,576 280,442 373,349 466,256 600,256 734,256 827,349 920,442 920,576 920,710 827,803 734,896 600,896z M599.765,836Q708,836 784,760.235 860,684.471 860,576.235 860,468 784.235,392 708.471,316 600.235,316 492,316 416,391.765 340,467.529 340,575.765 340,684 415.765,760 491.529,836 599.765,836z M702,719L744,677 631,563 630,416 570,416 570,588 702,719z M80,446L80,386 240,386 240,446 80,446z M40,606L40,546 240,546 240,606 40,606z M80,766L80,706 240,706 240,766 80,766z M600,576z</Geometry>
+    <DrawingGroup x:Key="timerDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource timerGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="timerDrawingImage" Drawing="{StaticResource timerDrawingGroup}" />
+
+
+    <Geometry x:Key="settingsGeometry">F1 M960,960z M0,0z M388,976L368,850Q349,843 328,831 307,819 291,806L173,860 80,696 188,617Q186,608 185.5,596.5 185,585 185,576 185,567 185.5,555.5 186,544 188,535L80,456 173,292 291,346Q307,333 328,321 349,309 368,303L388,176 572,176 592,302Q611,309 632.5,320.5 654,332 669,346L787,292 880,456 772,533Q774,543 774.5,554.5 775,566 775,576 775,586 774.5,597 774,608 772,618L880,696 787,860 669,806Q653,819 632.5,831.5 612,844 592,850L572,976 388,976z M480,706Q534,706 572,668 610,630 610,576 610,522 572,484 534,446 480,446 426,446 388,484 350,522 350,576 350,630 388,668 426,706 480,706z M480,646Q451,646 430.5,625.5 410,605 410,576 410,547 430.5,526.5 451,506 480,506 509,506 529.5,526.5 550,547 550,576 550,605 529.5,625.5 509,646 480,646z M480,576z M436,916L524,916 538,804Q571,796 600.5,779 630,762 654,738L760,784 800,712 706,643Q710,626 712.5,609.5 715,593 715,576 715,559 713,542.5 711,526 706,509L800,440 760,368 654,414Q631,388 602,370.5 573,353 538,348L524,236 436,236 422,348Q388,355 358.5,372 329,389 306,414L200,368 160,440 254,509Q250,526 247.5,542.5 245,559 245,576 245,593 247.5,609.5 250,626 254,643L160,712 200,784 306,738Q330,762 359.5,779 389,796 422,804L436,916z</Geometry>
+    <DrawingGroup x:Key="settingsDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource settingsGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="settingsDrawingImage" Drawing="{StaticResource settingsDrawingGroup}" />
+
+
+    <Geometry x:Key="pauseGeometry">F1 M960,960z M0,0z M525,856L525,296 760,296 760,856 525,856z M200,856L200,296 435,296 435,856 200,856z M585,796L700,796 700,356 585,356 585,796z M260,796L375,796 375,356 260,356 260,796z M260,356L260,796 260,356z M585,356L585,796 585,356z</Geometry>
+    <DrawingGroup x:Key="pauseDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource pauseGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="pauseDrawingImage" Drawing="{StaticResource pauseDrawingGroup}" />
+
+
+    <Geometry x:Key="deleteGeometry">F1 M960,960z M0,0z M261,936Q236.25,936 218.625,918.375 201,900.75 201,876L201,306 160,306 160,246 348,246 348,216 612,216 612,246 800,246 800,306 759,306 759,876Q759,900 741,918 723,936 699,936L261,936z M699,306L261,306 261,876 699,876 699,306z M367,790L427,790 427,391 367,391 367,790z M533,790L593,790 593,391 533,391 533,790z M261,306L261,876 261,306z</Geometry>
+    <DrawingGroup x:Key="deleteDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource deleteGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="deleteDrawingImage" Drawing="{StaticResource deleteDrawingGroup}" />
+
+
+    <Geometry x:Key="addGeometry">F1 M960,960z M0,0z M450,856L450,606 200,606 200,546 450,546 450,296 510,296 510,546 760,546 760,606 510,606 510,856 450,856z</Geometry>
+    <DrawingGroup x:Key="addDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource addGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="addDrawingImage" Drawing="{StaticResource addDrawingGroup}" />
+
+
+    <Geometry x:Key="closeGeometry">F1 M960,960z M0,0z M249,849L207,807 438,576 207,345 249,303 480,534 711,303 753,345 522,576 753,807 711,849 480,618 249,849z</Geometry>
+    <DrawingGroup x:Key="closeDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource closeGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="closeDrawingImage" Drawing="{StaticResource closeDrawingGroup}" />
+
+
+    <Geometry x:Key="browse_activityGeometry">F1 M960,960z M0,0z M80,466L80,276Q80,252 98,234 116,216 140,216L820,216Q844,216 862,234 880,252 880,276L880,466 820,466 820,276 140,276 140,466 80,466z M140,816Q116,816 98,798 80,780 80,756L80,526 140,526 140,756 820,756 820,526 880,526 880,756Q880,780 862,798 844,816 820,816L140,816z M40,936L40,876 920,876 920,936 40,936z M480,516z M80,526L80,466 320,466Q328.161,466 335.581,470 343,474 347,482L402,594 533,363Q537,355 544.5,351.5 552,348 560.119,348 568.238,348 575.619,351.5 583,355 587,363L637.553,466 880,466 880,526 619,526Q610.75,526 603.25,522 595.75,518 592,510L558,441 427,670Q423.277,678 415.83,682 408.383,686 400.191,686 392,686 384.5,682 377,678 373,670L301,526 80,526z</Geometry>
+    <DrawingGroup x:Key="browse_activityDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource browse_activityGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="browse_activityDrawingImage" Drawing="{StaticResource browse_activityDrawingGroup}" />
+
+
+    <Geometry x:Key="taskGeometry">F1 M960,960z M0,0z M120,725L120,665 426,665 426,725 120,725z M120,560L120,500 593,500 593,560 120,560z M120,395L120,335 593,335 593,395 120,395z M652,855L516,719 558,676 652,769 837,584 880,627 652,855z</Geometry>
+    <DrawingGroup x:Key="taskDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource taskGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="taskDrawingImage" Drawing="{StaticResource taskDrawingGroup}" />
+
+
+    <Geometry x:Key="add_taskGeometry">F1 M960,960z M0,0z M480,976Q395,976 322,945.5 249,915 195,861 141,807 110.5,734 80,661 80,576 80,492 110.5,419 141,346 195,292 249,238 322,207 395,176 480,176 555,176 620,200 685,224 737,266L694,309Q650,274 596,255 542,236 480,236 335,236 237.5,333.5 140,431 140,576 140,721 237.5,818.5 335,916 480,916 517,916 551.5,909 586,902 618,888L663,934Q622,954 576,965 530,976 480,976z M770,886L770,766 650,766 650,706 770,706 770,586 830,586 830,706 950,706 950,766 830,766 830,886 770,886z M421,758L256,592 301,547 421,667 835,253 881,298 421,758z</Geometry>
+    <DrawingGroup x:Key="add_taskDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource add_taskGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="add_taskDrawingImage" Drawing="{StaticResource add_taskDrawingGroup}" />
+
+
+    <Geometry x:Key="doneGeometry">F1 M960,960z M0,0z M378,810L154,586 197,543 378,724 762,340 805,383 378,810z</Geometry>
+    <DrawingGroup x:Key="doneDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource doneGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="doneDrawingImage" Drawing="{StaticResource doneDrawingGroup}" />
+
+
+    <Geometry x:Key="playGeometry">F1 M960,960z M0,0z M320,853L320,293 760,573 320,853z M380,573z M380,744L649,573 380,402 380,744z</Geometry>
+    <DrawingGroup x:Key="playDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource playGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="playDrawingImage" Drawing="{StaticResource playDrawingGroup}" />
+
+
+    <Geometry x:Key="replayGeometry">F1 M960,960z M0,0z M480,976Q405,976 339.5,948 274,920 225,871 176,822 148,756.5 120,691 120,616L180,616Q180,741 267.5,828.5 355,916 480,916 605,916 692.5,828.5 780,741 780,616 780,491 695,403.5 610,316 485,316L462,316 535,389 494,431 347,284 494,137 535,178 457,256 480,256Q555,256 620.5,284 686,312 735,361 784,410 812,475.5 840,541 840,616 840,691 812,756.5 784,822 735,871 686,920 620.5,948 555,976 480,976z</Geometry>
+    <DrawingGroup x:Key="replayDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource replayGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="replayDrawingImage" Drawing="{StaticResource replayDrawingGroup}" />
+
+
+    <Geometry x:Key="homeGeometry">F1 M960,960z M0,0z M220,876L370,876 370,626 590,626 590,876 740,876 740,486 480,291 220,486 220,876z M160,936L160,456 480,216 800,456 800,936 530,936 530,686 430,686 430,936 160,936z M480,583z</Geometry>
+    <DrawingGroup x:Key="homeDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource homeGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="homeDrawingImage" Drawing="{StaticResource homeDrawingGroup}" />
+
+    <Geometry x:Key="browse_activity_lightGeometry">F1 M960,960z M0,0z M80,466L80,276Q80,252 98,234 116,216 140,216L820,216Q844,216 862,234 880,252 880,276L880,466 820,466 820,276 140,276 140,466 80,466z M140,816Q116,816 98,798 80,780 80,756L80,526 140,526 140,756 820,756 820,526 880,526 880,756Q880,780 862,798 844,816 820,816L140,816z M40,936L40,876 920,876 920,936 40,936z M480,516z M80,526L80,466 320,466Q328.161,466 335.581,470 343,474 347,482L402,594 533,363Q537,355 544.5,351.5 552,348 560.119,348 568.238,348 575.619,351.5 583,355 587,363L637.553,466 880,466 880,526 619,526Q610.75,526 603.25,522 595.75,518 592,510L558,441 427,670Q423.277,678 415.83,682 408.383,686 400.191,686 392,686 384.5,682 377,678 373,670L301,526 80,526z</Geometry>
+    <DrawingGroup x:Key="browse_activity_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource browse_activity_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="browse_activity_lightDrawingImage" Drawing="{StaticResource browse_activity_lightDrawingGroup}" />
+    <Geometry x:Key="add_lightGeometry">F1 M960,960z M0,0z M450,856L450,606 200,606 200,546 450,546 450,296 510,296 510,546 760,546 760,606 510,606 510,856 450,856z</Geometry>
+    <DrawingGroup x:Key="add_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource add_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="add_lightDrawingImage" Drawing="{StaticResource add_lightDrawingGroup}" />
+    <Geometry x:Key="home_lightGeometry">F1 M960,960z M0,0z M220,876L370,876 370,626 590,626 590,876 740,876 740,486 480,291 220,486 220,876z M160,936L160,456 480,216 800,456 800,936 530,936 530,686 430,686 430,936 160,936z M480,583z</Geometry>
+    <DrawingGroup x:Key="home_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource home_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="home_lightDrawingImage" Drawing="{StaticResource home_lightDrawingGroup}" />
+    <Geometry x:Key="settings_lightGeometry">F1 M960,960z M0,0z M388,976L368,850Q349,843 328,831 307,819 291,806L173,860 80,696 188,617Q186,608 185.5,596.5 185,585 185,576 185,567 185.5,555.5 186,544 188,535L80,456 173,292 291,346Q307,333 328,321 349,309 368,303L388,176 572,176 592,302Q611,309 632.5,320.5 654,332 669,346L787,292 880,456 772,533Q774,543 774.5,554.5 775,566 775,576 775,586 774.5,597 774,608 772,618L880,696 787,860 669,806Q653,819 632.5,831.5 612,844 592,850L572,976 388,976z M480,706Q534,706 572,668 610,630 610,576 610,522 572,484 534,446 480,446 426,446 388,484 350,522 350,576 350,630 388,668 426,706 480,706z M480,646Q451,646 430.5,625.5 410,605 410,576 410,547 430.5,526.5 451,506 480,506 509,506 529.5,526.5 550,547 550,576 550,605 529.5,625.5 509,646 480,646z M480,576z M436,916L524,916 538,804Q571,796 600.5,779 630,762 654,738L760,784 800,712 706,643Q710,626 712.5,609.5 715,593 715,576 715,559 713,542.5 711,526 706,509L800,440 760,368 654,414Q631,388 602,370.5 573,353 538,348L524,236 436,236 422,348Q388,355 358.5,372 329,389 306,414L200,368 160,440 254,509Q250,526 247.5,542.5 245,559 245,576 245,593 247.5,609.5 250,626 254,643L160,712 200,784 306,738Q330,762 359.5,779 389,796 422,804L436,916z</Geometry>
+    <DrawingGroup x:Key="settings_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource settings_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="settings_lightDrawingImage" Drawing="{StaticResource settings_lightDrawingGroup}" />
+    <Geometry x:Key="done_lightGeometry">F1 M960,960z M0,0z M378,810L154,586 197,543 378,724 762,340 805,383 378,810z</Geometry>
+    <DrawingGroup x:Key="done_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource done_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="done_lightDrawingImage" Drawing="{StaticResource done_lightDrawingGroup}" />
+    <Geometry x:Key="delete_lightGeometry">F1 M960,960z M0,0z M261,936Q236.25,936 218.625,918.375 201,900.75 201,876L201,306 160,306 160,246 348,246 348,216 612,216 612,246 800,246 800,306 759,306 759,876Q759,900 741,918 723,936 699,936L261,936z M699,306L261,306 261,876 699,876 699,306z M367,790L427,790 427,391 367,391 367,790z M533,790L593,790 593,391 533,391 533,790z M261,306L261,876 261,306z</Geometry>
+    <DrawingGroup x:Key="delete_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource delete_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="delete_lightDrawingImage" Drawing="{StaticResource delete_lightDrawingGroup}" />
+    <Geometry x:Key="timer_lightGeometry">F1 M960,960z M0,0z M600,896Q466,896 373,803 280,710 280,576 280,442 373,349 466,256 600,256 734,256 827,349 920,442 920,576 920,710 827,803 734,896 600,896z M599.765,836Q708,836 784,760.235 860,684.471 860,576.235 860,468 784.235,392 708.471,316 600.235,316 492,316 416,391.765 340,467.529 340,575.765 340,684 415.765,760 491.529,836 599.765,836z M702,719L744,677 631,563 630,416 570,416 570,588 702,719z M80,446L80,386 240,386 240,446 80,446z M40,606L40,546 240,546 240,606 40,606z M80,766L80,706 240,706 240,766 80,766z M600,576z</Geometry>
+    <DrawingGroup x:Key="timer_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource timer_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="timer_lightDrawingImage" Drawing="{StaticResource timer_lightDrawingGroup}" />
+    <Geometry x:Key="pause_lightGeometry">F1 M960,960z M0,0z M525,856L525,296 760,296 760,856 525,856z M200,856L200,296 435,296 435,856 200,856z M585,796L700,796 700,356 585,356 585,796z M260,796L375,796 375,356 260,356 260,796z M260,356L260,796 260,356z M585,356L585,796 585,356z</Geometry>
+    <DrawingGroup x:Key="pause_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource pause_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="pause_lightDrawingImage" Drawing="{StaticResource pause_lightDrawingGroup}" />
+    <Geometry x:Key="task_lightGeometry">F1 M960,960z M0,0z M120,725L120,665 426,665 426,725 120,725z M120,560L120,500 593,500 593,560 120,560z M120,395L120,335 593,335 593,395 120,395z M652,855L516,719 558,676 652,769 837,584 880,627 652,855z</Geometry>
+    <DrawingGroup x:Key="task_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource task_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="task_lightDrawingImage" Drawing="{StaticResource task_lightDrawingGroup}" />
+    <Geometry x:Key="play_lightGeometry">F1 M960,960z M0,0z M320,853L320,293 760,573 320,853z M380,573z M380,744L649,573 380,402 380,744z</Geometry>
+    <DrawingGroup x:Key="play_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource play_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="play_lightDrawingImage" Drawing="{StaticResource play_lightDrawingGroup}" />
+    <Geometry x:Key="add_task_lightGeometry">F1 M960,960z M0,0z M480,976Q395,976 322,945.5 249,915 195,861 141,807 110.5,734 80,661 80,576 80,492 110.5,419 141,346 195,292 249,238 322,207 395,176 480,176 555,176 620,200 685,224 737,266L694,309Q650,274 596,255 542,236 480,236 335,236 237.5,333.5 140,431 140,576 140,721 237.5,818.5 335,916 480,916 517,916 551.5,909 586,902 618,888L663,934Q622,954 576,965 530,976 480,976z M770,886L770,766 650,766 650,706 770,706 770,586 830,586 830,706 950,706 950,766 830,766 830,886 770,886z M421,758L256,592 301,547 421,667 835,253 881,298 421,758z</Geometry>
+    <DrawingGroup x:Key="add_task_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource add_task_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="add_task_lightDrawingImage" Drawing="{StaticResource add_task_lightDrawingGroup}" />
+    <Geometry x:Key="close_lightGeometry">F1 M960,960z M0,0z M249,849L207,807 438,576 207,345 249,303 480,534 711,303 753,345 522,576 753,807 711,849 480,618 249,849z</Geometry>
+    <DrawingGroup x:Key="close_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource close_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="close_lightDrawingImage" Drawing="{StaticResource close_lightDrawingGroup}" />
+    <Geometry x:Key="replay_lightGeometry">F1 M960,960z M0,0z M480,976Q405,976 339.5,948 274,920 225,871 176,822 148,756.5 120,691 120,616L180,616Q180,741 267.5,828.5 355,916 480,916 605,916 692.5,828.5 780,741 780,616 780,491 695,403.5 610,316 485,316L462,316 535,389 494,431 347,284 494,137 535,178 457,256 480,256Q555,256 620.5,284 686,312 735,361 784,410 812,475.5 840,541 840,616 840,691 812,756.5 784,822 735,871 686,920 620.5,948 555,976 480,976z</Geometry>
+    <DrawingGroup x:Key="replay_lightDrawingGroup" ClipGeometry="M0,96 V1056 H960 V0 H96 Z">
+        <DrawingGroup.Transform>
+            <TranslateTransform X="0" Y="-96" />
+        </DrawingGroup.Transform>
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource replay_lightGeometry}" />
+    </DrawingGroup>
+    <DrawingImage x:Key="replay_lightDrawingImage" Drawing="{StaticResource replay_lightDrawingGroup}" />
+
+</ResourceDictionary>

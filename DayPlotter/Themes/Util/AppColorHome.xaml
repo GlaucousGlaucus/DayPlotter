@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Main Screen Colors-->
+    <SolidColorBrush x:Key="App.Colors.Main.TitleBar" Color="Wheat"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Logo" Color="Brown"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Buttons.MenuSelect" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Background" Color="#FFF9DE"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Heading" Color="#b35000"/>
+    <!--Pomo Screen Colors-->
+    <SolidColorBrush x:Key="App.Colors.Pomo.Heading" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Timer" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.TimerBorder" Color="Wheat"/>
+
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Static.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Static.Border" Color="Wheat"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.MouseOver.Background" Color="Wheat"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.MouseOver.Border" Color="PeachPuff"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Pressed.Background" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Pressed.Border" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Foreground" Color="#FF838383"/>
+
+</ResourceDictionary>
