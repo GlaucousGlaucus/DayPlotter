@@ -57,7 +57,11 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}" Value="True"/>
                                             <Condition Binding="{Binding StartStopText}" Value="Pa"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pauseDrawingImage}"/>
@@ -65,7 +69,11 @@
                                     
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}" Value="True"/>
                                             <Condition Binding="{Binding StartStopText}" Value="Pl"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource playDrawingImage}"/>
@@ -73,7 +81,11 @@
                                     
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="False"/>
+                                            <Condition Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}" Value="False"/>
                                             <Condition Binding="{Binding StartStopText}" Value="Pa"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pause_lightDrawingImage}"/>
@@ -92,9 +104,13 @@
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="{StaticResource replay_lightDrawingImage}"/>
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
+                                    <DataTrigger Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}" Value="True">
                                         <Setter Property="Source" Value="{StaticResource replayDrawingImage}"/>
-                                    </Trigger>
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Image.Style>
@@ -109,9 +125,13 @@
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
+                                <DataTrigger Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}"  Value="True">
                                     <Setter Property="Foreground" Value="Black"/>
-                                </Trigger>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>

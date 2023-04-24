@@ -10,9 +10,12 @@
                               HorizontalAlignment="Stretch"
                               Background="{TemplateBinding Background}">
 
-                            <TextBlock Text="{TemplateBinding Content}"
+                            <ContentControl Content="{TemplateBinding Content}" 
+                                            VerticalAlignment="Center"/>
+
+                            <!--<TextBlock Text="{TemplateBinding Content}"
                                        VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"/>
+                                       HorizontalAlignment="Center"/>-->
 
                         </Grid>
                     </ControlTemplate>

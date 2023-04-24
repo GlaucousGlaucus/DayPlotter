@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="./Themes/PomoTimerTheme2.xaml"/>
                 <ResourceDictionary Source="./Themes/TimerPresetTheme.xaml"/>
                 <ResourceDictionary Source="./Themes/TimerControlBtnTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/TaskThemes/ListTaskViewTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

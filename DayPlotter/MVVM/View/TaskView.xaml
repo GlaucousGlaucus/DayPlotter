@@ -4,9 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DayPolotter.MVVM.View"
+             xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:TaskViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <Border Background="Violet"/>
+        <Border Background="{StaticResource App.Colors.Main.Background}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Tasks" 
+                   FontSize="30"
+                   Foreground="{StaticResource App.Colors.Main.Heading}"
+                   HorizontalAlignment="Center"
+                   Margin="0,5,0,0"/>
+
+            <ListView Grid.Row="1"
+                      Margin="10" 
+                      ItemsSource="{Binding TaskItems}"
+                      SelectedIndex="{Binding SelectedIndex}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Task" 
+                                        Width="400"
+                                        DisplayMemberBinding="{Binding TaskName}"/>
+                        <GridViewColumn Header="Added On" 
+                                        Width="160"
+                                        DisplayMemberBinding="{Binding AddedOn}"/>
+                        <GridViewColumn Header="Repeat"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding RepeatDays}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="1">
+
+                <!--The Input Box-->
+                <TextBox Width="350"
+                         Height="40"
+                         Grid.Column="1"
+                        Grid.Row="1"
+                    HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                    Margin="25,10,25,10"
+                    Text="{Binding TaskEntry}"/>
+                
+                <!--The Shennanigans-->
+                <StackPanel>
+                    <TextBlock Text="Task Details"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Repeat Settings"
+                               HorizontalAlignment="Center"/>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20,0,0">
+                            <CheckBox Content="Sunday"/>
+                            <CheckBox Content="Monday" Margin="20,0,0,0"/>
+                            <CheckBox Content="Tuesday" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,20,0,0">
+                            <CheckBox Content="Wednesday"/>
+                            <CheckBox Content="Thursday" Margin="20,0,0,0"/>
+                            <CheckBox Content="Friday" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <CheckBox Content="Saturday"
+                                  HorizontalAlignment="Center"
+                                  Margin="0,20,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <!--The Control Btns-->
+
+                <StackPanel Orientation="Horizontal"
+                        Margin="0,80,0,0"
+                            HorizontalAlignment="Center"
+                        Grid.Column="1" Grid.Row="2">
+                    <Button Height="40"
+                    Background="Transparent"
+                    BorderThickness="1"
+                        Width="40" Command="{Binding AddTaskBtnCmd}">
+                        <Image Source="{StaticResource addDrawingImage}"/>
+                    </Button>
+                    <Button Height="40"
+                            Margin="25,0,0,0"
+                    Background="Transparent"
+                    BorderThickness="1"
+                        Width="40" Command="{Binding CompleteTaskBtnCmd}">
+                        <Image Source="{StaticResource doneDrawingImage}"/>
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>

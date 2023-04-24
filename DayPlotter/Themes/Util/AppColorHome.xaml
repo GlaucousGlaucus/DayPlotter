@@ -21,4 +21,7 @@
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Border" Color="#FFADB2B5"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Foreground" Color="#FF838383"/>
 
+    <!--Task Screen Colors-->
+    <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="White"/>
+
 </ResourceDictionary>

@@ -62,22 +62,52 @@
 
         <StackPanel Grid.Row="1"
                     Margin="0,50,0,0">
-            <RadioButton Content="Home"
-                         FontSize="25"
+            <RadioButton FontSize="25"
                          Foreground="{StaticResource App.Colors.Main.Buttons.MenuSelect}"
                          IsChecked="True"
                          Style="{StaticResource RadioBtnTheme}"
-                         Command="{Binding HomeViewCommand}"/>
-            <RadioButton Content="Pomodoro"
-                         FontSize="25"
+                         Command="{Binding HomeViewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="40"
+                           Height="40"
+                           Margin="10,0,0,5"
+                           Source="{StaticResource home_lightDrawingImage}"
+                           VerticalAlignment="Center"/>
+                    <TextBlock Text="Home" 
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton FontSize="25"
                          Foreground="{StaticResource App.Colors.Main.Buttons.MenuSelect}"
                          Style="{StaticResource RadioBtnTheme}"
-                         Command="{Binding PomoViewCommand}"/>
-            <RadioButton Content="Task"
-                         FontSize="25"
+                         Command="{Binding PomoViewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="40"
+                           Height="40"
+                           Margin="10,0,0,5"
+                           Source="{StaticResource timer_lightDrawingImage}"
+                           VerticalAlignment="Center"/>
+                    <TextBlock Text="Pomodoro" 
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton FontSize="25"
                          Foreground="{StaticResource App.Colors.Main.Buttons.MenuSelect}"
                          Style="{StaticResource RadioBtnTheme}"
-                         Command="{Binding TaskViewCommand}"/>
+                         Command="{Binding TaskViewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="40"
+                           Height="40"
+                           Margin="10,0,0,5"
+                           Source="{StaticResource task_lightDrawingImage}"
+                           VerticalAlignment="Center"/>
+                    <TextBlock Text="Tasks" 
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"/>
+                </StackPanel>
+            </RadioButton>
         </StackPanel>
 
         <ContentControl Grid.Row="1"
