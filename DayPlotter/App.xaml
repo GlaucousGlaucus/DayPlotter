@@ -18,6 +18,9 @@
                 <ResourceDictionary Source="./Themes/TimerPresetTheme.xaml"/>
                 <ResourceDictionary Source="./Themes/TimerControlBtnTheme.xaml"/>
                 <ResourceDictionary Source="./Themes/TaskThemes/ListTaskViewTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/TaskThemes/TaskRepeatBtnTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/TaskThemes/TaskCtrlBtnTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/TaskThemes/TaskListTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

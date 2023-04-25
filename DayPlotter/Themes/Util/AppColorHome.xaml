@@ -23,5 +23,22 @@
 
     <!--Task Screen Colors-->
     <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Menu.Border" Color="#bbd686"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Border" Color="#b35000"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Background" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Selected" Color="White"/>
+
+    <SolidColorBrush x:Key="App.Colors.Task.Button.MouseOver" Color="#CFC9AE"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Pressed" Color="#7bFF56"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Checked" Color="#bbd686"/>
+
+    <SolidColorBrush x:Key="App.Colors.Task.Button.MouseOver.Background" Color="#bbd686"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.MouseOver.Border" Color="#c35000"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Pressed.Background" Color="#bbd686"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Button.Pressed.Border" Color="#e35000"/>
+
+    <SolidColorBrush x:Key="App.Colors.Task.Input.MouseOver.Border" Color="#FF7EB4EA"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Input.Focus.Border" Color="#FF569DE5"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Input.BG" Color="#FFFFFF"/>
 
 </ResourceDictionary>
