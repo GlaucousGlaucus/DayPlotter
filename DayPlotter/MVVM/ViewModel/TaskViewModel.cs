@@ -5,26 +5,12 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using MySql.Data.MySqlClient;
 using System.Linq;
+using DayPlotter.MVVM.Models;
+using Google.Protobuf.WellKnownTypes;
+using System.Windows.Controls;
 
 namespace DayPolotter.MVVM.ViewModel
 {
-
-    public class Item
-    {
-        public Item(int id, string task, DateTime addedon, string repeat, bool completed)
-        {
-            ID = id;
-            TaskName = task;
-            AddedOn = addedon;
-            RepeatDays = repeat;
-            Completed = completed;
-        }
-        public int ID { get; set; }
-        public string TaskName { get; set; }
-        public DateTime AddedOn { get; set; }
-        public bool Completed { get; set; }
-        public string RepeatDays { get; set; }
-    }
 
     class TaskViewModel : ObservableObject
     {
@@ -33,9 +19,10 @@ namespace DayPolotter.MVVM.ViewModel
         public RelayCommand AddTaskBtnCmd { get; set; }
         public RelayCommand CompleteTaskBtnCmd { get; set; }
         public RelayCommand SaveChangesBtnCmd { get; set; }
-        public RelayCommand RepDaySave { get; set; }
-        public RelayCommand DelTaskcmd { get; set; }
-        private readonly ObservableCollection<Item> _taskItems;
+        public RelayCommand RepDaySaveCmd { get; set; }
+        public RelayCommand DelTaskCmd { get; set; }
+
+        private readonly ObservableCollection<TaskModel> _taskItems;
 
         private bool[] _repDays;
 
@@ -138,7 +125,7 @@ namespace DayPolotter.MVVM.ViewModel
                 OnPropertyChanged();
                 if (value >= 0)
                 {
-                    Item? item = _taskItems.ElementAtOrDefault(value);
+                    TaskModel? item = _taskItems.ElementAtOrDefault(value);
                     if (item != null)
                     {
                         TaskEntry = item.TaskName;
@@ -194,7 +181,7 @@ namespace DayPolotter.MVVM.ViewModel
             }
         }
 
-        public ObservableCollection<Item> TaskItems
+        public ObservableCollection<TaskModel> TaskItems
         {
             get { return _taskItems; }
         }
@@ -242,13 +229,13 @@ namespace DayPolotter.MVVM.ViewModel
             string add_date = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
             string sql = String.Format("INSERT INTO Test_table (task, AddedOn, Completed, Repeat_Task) VALUES" +
                 "('{0}', '{1}', {2}, '{3}')", TaskEntry, add_date, false, RepeatFreq);
-            new MySqlCommand(sql, conn).ExecuteReader().Close();
+            new MySqlCommand(sql, conn).ExecuteNonQuery();
             sql = String.Format("Select MAX(ID) from Test_table");
             MySqlDataReader rdr = new MySqlCommand(sql, conn).ExecuteReader();
             while (rdr.Read())
             {
                 if (int.TryParse(rdr[0].ToString(), out int sql_id))
-                _taskItems.Add(new Item(sql_id, TaskEntry, DateTime.Now, RepeatFreq, false));
+                _taskItems.Add(new TaskModel(sql_id, TaskEntry, DateTime.Now, RepeatFreq, false));
             }
             rdr.Close();
         }
@@ -259,24 +246,27 @@ namespace DayPolotter.MVVM.ViewModel
             {
                 MessageBox.Show("Invalid Task Entry!"); return;
             }
-            Item? selItem = _taskItems.ElementAtOrDefault(SelectedIndex);
+            TaskModel? selItem = _taskItems.ElementAtOrDefault(SelectedIndex);
             if (selItem == null)
             {
                 MessageBox.Show("Select a task first to update!"); return;
             }
+            if (MessageBox.Show("Edit Task", "Do you want to update the selected task ?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question,
+                MessageBoxResult.No).Equals(MessageBoxResult.No)) return;
             int selID = selItem.ID;
             bool[] repDays = new bool[7] { RepSunday, RepMonday,
                             RepTuesday, RepWednesday, RepThursday, RepFriday, RepSaturday};
             RepeatFreq = RepeatDayEncrypt(repDays);
             string sql = String.Format("UPDATE TEST_TABLE SET TASK = \"{0}\", REPEAT_TASK=\"{1}\" WHERE ID={2}",
                 TaskEntry, RepeatFreq, selID);
-            new MySqlCommand(sql, conn).ExecuteReader().Close();
-            _taskItems[SelectedIndex] = new Item(selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
+            new MySqlCommand(sql, conn).ExecuteNonQuery();
+            _taskItems[SelectedIndex] = new TaskModel(selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
         }
 
         public TaskViewModel()
         {
-            _taskItems = new ObservableCollection<Item>();
+            _taskItems = new ObservableCollection<TaskModel>();
 
             string connStr = "server=localhost;user=root;database=dayplotter;port=3306;password=1234";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -287,7 +277,7 @@ namespace DayPolotter.MVVM.ViewModel
                 string sql = String.Format(
                     "UPDATE TEST_TABLE SET COMPLETED=FALSE WHERE REPEAT_TASK LIKE \"%{0}%\""
                     , day_abbv_chars[(int)(DateTime.Now.DayOfWeek)]);
-                new MySqlCommand(sql, conn).ExecuteReader().Close();
+                new MySqlCommand(sql, conn).ExecuteNonQuery();
                 sql = "SELECT * FROM Test_table ORDER BY ID";
                 MySqlDataReader rdr = new MySqlCommand(sql, conn).ExecuteReader();
                 while (rdr.Read())
@@ -298,7 +288,7 @@ namespace DayPolotter.MVVM.ViewModel
                     {
                         if (!comp_result)
                         {
-                            _taskItems?.Add(new Item(taskid,
+                            _taskItems?.Add(new TaskModel(taskid,
                                 rdr[1].ToString(), date_result, rdr[3].ToString(), comp_result));
                         }
                     }
@@ -315,14 +305,14 @@ namespace DayPolotter.MVVM.ViewModel
 
                 CompleteTaskBtnCmd = new RelayCommand(o =>
                 {
-                    Item? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
+                    TaskModel? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
                     if (selItem != null)
                     {
                         int selID = selItem.ID;
                         string sql = String.Format(
                             "UPDATE TEST_TABLE SET COMPLETED = true WHERE ID={0}", selID);
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteReader().Close();
+                        cmd.ExecuteNonQuery();
                         _taskItems?.RemoveAt(SelectedIndex);
                     }
                 });
@@ -332,9 +322,9 @@ namespace DayPolotter.MVVM.ViewModel
                     EditTaskItem(conn);
                 });
 
-                RepDaySave = new RelayCommand(o =>
+                RepDaySaveCmd = new RelayCommand(o =>
                 {
-                    Item? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
+                    TaskModel? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
                     if (_taskItems != null & selItem != null)
                     {
                         int selID = selItem.ID;
@@ -345,27 +335,27 @@ namespace DayPolotter.MVVM.ViewModel
                             "UPDATE TEST_TABLE SET Repeat_task = \"{0}\" WHERE ID={1}",
                             RepeatFreq, selID);
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteReader().Close();
+                        cmd.ExecuteNonQuery();
                         int SelectedIndexPrev = SelectedIndex;
-                        _taskItems[SelectedIndex] = new Item
+                        _taskItems[SelectedIndex] = new TaskModel
                         (selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
                         SelectedIndex = SelectedIndexPrev;
                     }
                 });
 
-                DelTaskcmd = new RelayCommand(o =>
+                DelTaskCmd = new RelayCommand(o =>
                 {
                     if (!taskInRegex.IsMatch(TaskEntry))
                     {
                         MessageBox.Show("Invalid Task Entry!"); return;
                     }
-                    Item? selItem = _taskItems.ElementAtOrDefault(SelectedIndex);
+                    TaskModel? selItem = _taskItems.ElementAtOrDefault(SelectedIndex);
                     if (selItem == null)
                     {
                         MessageBox.Show("Select a task first to update!"); return;
                     }
                     string sql = String.Format("DELETE FROM TEST_TABLE WHERE ID={0}", selItem.ID);
-                    new MySqlCommand(sql, conn).ExecuteReader().Close();
+                    new MySqlCommand(sql, conn).ExecuteNonQuery();
                     _taskItems.RemoveAt(SelectedIndex);
                 });
             }

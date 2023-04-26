@@ -84,20 +84,20 @@
                                 HorizontalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <CheckBox Style="{DynamicResource TaskRepBtnTheme}" IsChecked="{Binding RepSunday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Margin="0,0,0,0"
                                       Content="S"/>
                                     <CheckBox IsChecked="{Binding RepMonday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="M"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
                                     <CheckBox IsChecked="{Binding RepTuesday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="T"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
 
                                     <CheckBox IsChecked="{Binding RepWednesday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="W"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
                                 </StackPanel>
@@ -105,16 +105,16 @@
                                             Margin="0,10,0,0"
                                             HorizontalAlignment="Center">
                                     <CheckBox IsChecked="{Binding RepThursday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="Thu"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
                                     <CheckBox IsChecked="{Binding RepFriday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="F"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
 
                                     <CheckBox IsChecked="{Binding RepSaturday}"
-                                      Command="{Binding RepDaySave}"
+                                      Command="{Binding RepDaySaveCmd}"
                                       Content="Sat"
                                       HorizontalAlignment="Center"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
@@ -167,7 +167,7 @@
                                     ToolTipService.BetweenShowDelay="10000"
                                     ToolTip="Delete Selected Task"
                             IsEnabled="{Binding DeleteTaskBtnToggle}"
-                                Command="{Binding DelTaskcmd}">
+                                Command="{Binding DelTaskCmd}">
                                 <Image Source="{StaticResource deleteDrawingImage}"/>
                             </Button>
                         </StackPanel>

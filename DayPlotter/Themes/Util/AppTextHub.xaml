@@ -47,7 +47,6 @@
                                 changes using the
             <Image Width="20" Source="{StaticResource add_taskDrawingImage}"/>
             Button.
-            <Italic>This will be changed soon.</Italic>
         </Paragraph>
     </FlowDocument>
 </ResourceDictionary>

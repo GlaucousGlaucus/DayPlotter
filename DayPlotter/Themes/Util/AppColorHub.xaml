@@ -10,9 +10,12 @@
     <!--Pomo Screen Colors-->
     <SolidColorBrush x:Key="App.Colors.Pomo.Background" Color="Tomato"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Heading" Color="White"/>
-    <SolidColorBrush x:Key="App.Colors.Pomo.Timer" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Timer" Color="White"/> 
     <SolidColorBrush x:Key="App.Colors.Pomo.TimerBorder" Color="Wheat"/>
 
+    <SolidColorBrush x:Key="App.Colors.Pomo.ListView.Background" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.Menu.Border" Color="Black"/>
+    
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Static.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Static.Border" Color="Wheat"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.MouseOver.Background" Color="Wheat"/>

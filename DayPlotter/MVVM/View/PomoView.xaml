@@ -7,7 +7,7 @@
              xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
              xmlns:Converters="clr-namespace:DayPolotter.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="750" d:DesignWidth="900"
              Background="{StaticResource App.Colors.Pomo.Background}">
     <!--<UserControl.Resources>
         <Converters:TimeConverter x:Key="TimeConverter"/>
@@ -49,6 +49,7 @@
                         Width="100">
                 <Button Style="{DynamicResource TimerControlBtnTheme}" 
                     Command="{Binding StartTimer}"
+                    IsEnabled="{Binding IsNormalTime}"
                     Margin="0,0,0,0">
                     <Image>
                         <Image.Style>
@@ -66,7 +67,7 @@
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pauseDrawingImage}"/>
                                     </MultiDataTrigger>
-                                    
+
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding RelativeSource=
@@ -78,7 +79,7 @@
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource playDrawingImage}"/>
                                     </MultiDataTrigger>
-                                    
+
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding RelativeSource=
@@ -98,6 +99,7 @@
 
                 <Button Style="{DynamicResource TimerControlBtnTheme}"
                     Command="{Binding ResetTimer}"
+                    IsEnabled="{Binding IsNormalTime}"
                     Margin="20,0,0,0">
                     <Image Width="30" Height="30">
                         <Image.Style>
@@ -117,11 +119,42 @@
                     </Image>
                 </Button>
             </StackPanel>
+            <Grid Width="200" Height="Auto" Margin="0,20,0,0">
+                <Rectangle Width="200" Height="100"
+                         StrokeThickness="2"
+                         HorizontalAlignment="Center"
+                         Stroke="{StaticResource App.Colors.Pomo.TimerBorder}"
+                         IsHitTestVisible="False"/>
+                <TextBlock Text="Take a Break for"
+                           Margin="0,15,0,0"
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Background="Transparent"
+                           Foreground="{StaticResource App.Colors.Pomo.Timer}"
+                           PreviewTextInput="TimeTextBox_PreviewTextInput"
+                           PreviewKeyDown="TimeBox_KeyPrev"/>
+                <TextBox Text="{Binding BreakTime,
+                    UpdateSourceTrigger=PropertyChanged}"
+                         Height="40" 
+                         Margin="35,0,0,15"
+                         FontSize="35"
+                         IsEnabled="{Binding IsNormalTime}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         Background="Transparent"
+                         Foreground="{StaticResource App.Colors.Pomo.Timer}"
+                         PreviewTextInput="TimeTextBox_PreviewTextInput"
+                         PreviewKeyDown="TimeBox_KeyPrev"
+                         BorderThickness="0"
+                         x:Name="BreakTimeBox"/>
+            </Grid>
             <Button Style="{DynamicResource TimerControlBtnTheme}"
                     Margin="0,10,0,0"    
+                    IsEnabled="{Binding IsNormalTime}"
                     Command="{Binding BreakTimeTimer}"
                     Width="200">
-                <TextBlock Text="Take a Break">
+                <TextBlock Text="Start Break">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Style.Triggers>
@@ -143,6 +176,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition/>
+                    <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="TIMER PRESETS"
                    FontSize="30"
@@ -150,10 +184,62 @@
                    Foreground="{StaticResource App.Colors.Pomo.Heading}"
                    FontWeight="SemiBold"
                    Margin="0,20,0,0"/>
+
                 <StackPanel Grid.Row="1">
-                    <ListView Style="{DynamicResource TimerPresetTheme}">
-                        <ListViewItem Content="Todo"/>
-                    </ListView>
+                    <ListView ItemTemplate="{DynamicResource TimerPresetsLVDataTemplate}"
+                              ItemContainerStyle="{DynamicResource TimerPresetsLVContainer}"
+                              Margin="15"
+                              Height="300"
+                              Background="{StaticResource App.Colors.Pomo.ListView.Background}"
+                              BorderThickness="2"
+                              BorderBrush="{StaticResource App.Colors.Pomo.Menu.Border}"
+                              ItemsSource="{Binding TimePresets}"
+                              SelectedIndex="{Binding SelectedPresetIndex}"/>
+
+                </StackPanel>
+                <StackPanel Margin="20,0,0,0" Grid.Row="2" Orientation="Horizontal">
+                    <Button Style="{DynamicResource TimerControlBtnTheme}"
+                    Margin="0,0,0,0"    
+                    Command="{Binding SaveCurrentPreset}"
+                    Width="300">
+                        <TextBlock Text="Save Current Preset">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}"  Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
+
+                    <Button Style="{DynamicResource TimerControlBtnTheme}"
+                    Command="{Binding DeletePreset}"
+                    IsEnabled="{Binding IsNormalTime}"
+                    Margin="30,0,0,0">
+                        <Image Width="30" Height="30">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="{StaticResource delete_lightDrawingImage}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource=
+                                                {RelativeSource FindAncestor,
+                                                AncestorType={x:Type Button},
+                                                AncestorLevel=1},
+                                                Path=IsMouseOver}" Value="True">
+                                            <Setter Property="Source" Value="{StaticResource deleteDrawingImage}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
                 </StackPanel>
             </Grid>
         </StackPanel>
