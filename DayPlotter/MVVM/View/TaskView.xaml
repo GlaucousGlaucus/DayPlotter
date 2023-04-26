@@ -24,45 +24,44 @@
 
             <TextBlock Text="Tasks" 
                    FontSize="30"
+                       Grid.ColumnSpan="2"
                    Foreground="{StaticResource App.Colors.Main.Heading}"
                    HorizontalAlignment="Center"
                    Margin="0,5,0,0"/>
-            <TextBlock Text="Task Management" 
+            <!--<TextBlock Text="Task Management" 
                    FontSize="30"
                    Foreground="{StaticResource App.Colors.Main.Heading}"
                    HorizontalAlignment="Center"
                        Grid.Column="1"
-                   Margin="0,5,0,0"/>
+                   Margin="0,5,0,0"/>-->
 
-            <ListView Style="{StaticResource TaskListTheme}" Grid.Row="1"
-                      Margin="10"
+            <ListView ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" ItemTemplate="{StaticResource ListViewItemTemplate1}" Grid.Row="1"
+                      Margin="10,0,10,10"
+                      Height="Auto"
+                      Background="{StaticResource App.Colors.Task.ListView.Background}"
+                      BorderThickness="3"
+                      BorderBrush="{StaticResource App.Colors.Task.Menu.Border}"
                       ItemsSource="{Binding TaskItems}"
                       SelectedIndex="{Binding SelectedIndex}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Task"
-                                        Width="Auto"
-                                        DisplayMemberBinding="{Binding TaskName}"/>
-                    </GridView>
-                </ListView.View>
             </ListView>
 
-            <Border Grid.Row="1" 
-                    Grid.Column="1"
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Border 
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     BorderThickness="3"
+                    Margin="0,0,0,0"
                     BorderBrush="{StaticResource App.Colors.Task.Menu.Border}">
-                <StackPanel HorizontalAlignment="Left"
+                    <StackPanel HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="15">
-                    <!--The Input Box-->
-                    <TextBlock Text="Task Details"
+                        <!--The Input Box-->
+                        <TextBlock Text="Task Details"
                            FontSize="15"
                            FontWeight="DemiBold"
                            Foreground="{StaticResource App.Colors.Main.Heading}"
                            HorizontalAlignment="Center"/>
-                    <TextBox Style="{DynamicResource TaskInputTheme}" Width="250"
+                        <TextBox Style="{DynamicResource TaskInputTheme}" Width="250"
                          Grid.Column="1"
                         Grid.Row="1"
                     HorizontalAlignment="Left"
@@ -70,96 +69,153 @@
                     Margin="5,10,5,10"
                     Text="{Binding TaskEntry, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <!--The Shennanigans-->
-                    <StackPanel>
+                        <!--The Shennanigans-->
+                        <StackPanel>
 
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="AddedOn: "
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="AddedOn: "
                                    FontWeight="SemiBold"
                                    Foreground="{StaticResource App.Colors.Main.Heading}"/>
-                            <TextBlock Text="{Binding DateAdded}"/>
-                        </StackPanel>
+                                <TextBlock Text="{Binding DateAdded}"/>
+                            </StackPanel>
 
-                        <TextBlock Text="Repeat On Days"
+                            <TextBlock Text="Repeat On Day(s)"
                                FontSize="15"
                            FontWeight="DemiBold"
                            Foreground="{StaticResource App.Colors.Main.Heading}"
                                HorizontalAlignment="Center"
                                Margin="0,10,0,0"/>
 
-                        <StackPanel Margin="-5,10,0,0"
-                                Orientation="Horizontal"
+                            <StackPanel Margin="-5,20,0,0"
                                 HorizontalAlignment="Center">
-                            <CheckBox Style="{DynamicResource TaskRepBtnTheme}" IsChecked="{Binding RepSunday}"
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Style="{DynamicResource TaskRepBtnTheme}" IsChecked="{Binding RepSunday}"
                                       Command="{Binding RepDaySave}"
                                       Margin="0,0,0,0"
                                       Content="S"/>
-                            <CheckBox IsChecked="{Binding RepMonday}"
+                                    <CheckBox IsChecked="{Binding RepMonday}"
                                       Command="{Binding RepDaySave}"
                                       Content="M"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
-                            <CheckBox IsChecked="{Binding RepTuesday}"
+                                    <CheckBox IsChecked="{Binding RepTuesday}"
                                       Command="{Binding RepDaySave}"
                                       Content="T"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
 
-                            <CheckBox IsChecked="{Binding RepWednesday}"
+                                    <CheckBox IsChecked="{Binding RepWednesday}"
                                       Command="{Binding RepDaySave}"
                                       Content="W"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
-                            <CheckBox IsChecked="{Binding RepThursday}"
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Center">
+                                    <CheckBox IsChecked="{Binding RepThursday}"
                                       Command="{Binding RepDaySave}"
                                       Content="Thu"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
-                            <CheckBox IsChecked="{Binding RepFriday}"
+                                    <CheckBox IsChecked="{Binding RepFriday}"
                                       Command="{Binding RepDaySave}"
                                       Content="F"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
 
-                            <CheckBox IsChecked="{Binding RepSaturday}"
+                                    <CheckBox IsChecked="{Binding RepSaturday}"
                                       Command="{Binding RepDaySave}"
                                       Content="Sat"
                                       HorizontalAlignment="Center"
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
 
-                    <!--The Control Btns-->
+                        <!--The Control Btns-->
 
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                         Margin="0,50,0,0"
                             HorizontalAlignment="Center"
                         Grid.Column="1" Grid.Row="2">
-                        <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
+                            <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
                                 Width="40" 
+                                    ToolTipService.InitialShowDelay="5000"
+                                    ToolTipService.ShowDuration="5000"
+                                    ToolTipService.BetweenShowDelay="7000"
+                                    ToolTip="Add a Task"
                                 Command="{Binding AddTaskBtnCmd}">
-                            <Image Source="{StaticResource addDrawingImage}"/>
-                        </Button>
-                        <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
+                                <Image Source="{StaticResource addDrawingImage}"/>
+                            </Button>
+                            <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
                             Margin="25,0,0,0"
+                            ToolTipService.InitialShowDelay="5000"
+                            ToolTipService.ShowDuration="5000"
+                            ToolTipService.BetweenShowDelay="7000"
+                            ToolTip="Complete Selected Task"
                             Width="40" 
                             IsEnabled="{Binding CompleteTaskBtnToggle}"
                             Command="{Binding CompleteTaskBtnCmd}">
-                            <Image Source="{StaticResource doneDrawingImage}"/>
-                        </Button>
-                        <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
+                                <Image Source="{StaticResource doneDrawingImage}"/>
+                            </Button>
+                            <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
                             Margin="25,0,0,0"
                             Width="40" 
+                                    ToolTipService.InitialShowDelay="5000"
+                                    ToolTipService.ShowDuration="5000"
+                                    ToolTipService.BetweenShowDelay="7000"
+                                    ToolTip="Edit Selected Task"
                             IsEnabled="{Binding EditTaskBtnToggle}"
                             Command="{Binding SaveChangesBtnCmd}">
-                            <Image Source="{StaticResource add_taskDrawingImage}"/>
-                        </Button>
-                        <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
+                                <Image Source="{StaticResource add_taskDrawingImage}"/>
+                            </Button>
+                            <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
                             Margin="25,0,0,0"
                             Width="40"
+                                    ToolTipService.InitialShowDelay="2000"
+                                    ToolTipService.ShowDuration="2000"
+                                    ToolTipService.BetweenShowDelay="10000"
+                                    ToolTip="Delete Selected Task"
                             IsEnabled="{Binding DeleteTaskBtnToggle}"
                                 Command="{Binding DelTaskcmd}">
-                            <Image Source="{StaticResource deleteDrawingImage}"/>
-                        </Button>
-                    </StackPanel>
+                                <Image Source="{StaticResource deleteDrawingImage}"/>
+                            </Button>
+                        </StackPanel>
 
-                </StackPanel>
-            </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="3"
+                        Margin="0,10,10,0"
+                        Width="Auto"
+                        Height="Auto"
+                    BorderBrush="{StaticResource App.Colors.Task.Menu.Border}">
+                    <FlowDocumentScrollViewer
+                        IsHitTestVisible="False"
+                        VerticalScrollBarVisibility="Hidden"
+                        IsToolBarVisible="False">
+                        <FlowDocument>
+                            <Paragraph>
+                                The Tasks Feature of this App
+                                provides you with tools to create
+                                and manage your daily tasks and
+                                keep track of them.
+                            </Paragraph>
+                            <Paragraph>
+                                You can also make certain tasks
+                                repeat on selected days using 
+                                the panel above.
+                            </Paragraph>
+                            <Paragraph>
+                                <Bold>NOTE:</Bold> Whenever you
+                                edit a task make sure to save
+                                changes using the
+                                <Image Width="20" Source="{StaticResource add_taskDrawingImage}"/>
+                                Button.
+                                <Italic>This will be changed soon.</Italic>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Border>
+            </StackPanel>
         </Grid>
 
     </Grid>

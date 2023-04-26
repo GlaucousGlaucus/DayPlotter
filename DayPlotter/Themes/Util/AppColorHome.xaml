@@ -22,7 +22,6 @@
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Disabled.Foreground" Color="#FF838383"/>
 
     <!--Task Screen Colors-->
-    <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="White"/>
     <SolidColorBrush x:Key="App.Colors.Task.Menu.Border" Color="#bbd686"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Border" Color="#b35000"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Background" Color="White"/>
@@ -40,5 +39,15 @@
     <SolidColorBrush x:Key="App.Colors.Task.Input.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="App.Colors.Task.Input.Focus.Border" Color="#FF569DE5"/>
     <SolidColorBrush x:Key="App.Colors.Task.Input.BG" Color="#FFFFFF"/>
+
+    <SolidColorBrush x:Key="App.Colors.Task.Item.MouseOver.Background" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Item.MouseOver.Border" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedInactive.Background" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedInactive.Border" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedActive.Background" Color="#bbd686"/>
+    <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedActive.Border" Color="#4bFF06"/>
+
+    <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="App.Colors.Task.ListView.Border" Color="#c35000"/>
 
 </ResourceDictionary>
