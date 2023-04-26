@@ -14,9 +14,9 @@ namespace DayPolotter.MVVM.ViewModel
         public PomoViewModel PomoViewModel { get; set; }
         public TaskViewModel TaskViewModel { get; set; }
 
-        private Object _currentView;
+        private object _currentView;
 
-        public Object CurrentView
+        public object CurrentView
         {
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
@@ -28,7 +28,7 @@ namespace DayPolotter.MVVM.ViewModel
             HomeViewModel = new HomeViewModel();
             PomoViewModel = new PomoViewModel();
             TaskViewModel = new TaskViewModel();
-            CurrentView = HomeViewModel;
+            _currentView = HomeViewModel;
 
             HomeViewCommand = new RelayCommand(o =>
             {

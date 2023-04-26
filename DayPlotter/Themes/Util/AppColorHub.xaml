@@ -6,7 +6,9 @@
     <SolidColorBrush x:Key="App.Colors.Main.Buttons.MenuSelect" Color="White"/>
     <SolidColorBrush x:Key="App.Colors.Main.Background" Color="#FFF9DE"/>
     <SolidColorBrush x:Key="App.Colors.Main.Heading" Color="#b35000"/>
+    
     <!--Pomo Screen Colors-->
+    <SolidColorBrush x:Key="App.Colors.Pomo.Background" Color="Tomato"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Heading" Color="White"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Timer" Color="White"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.TimerBorder" Color="Wheat"/>

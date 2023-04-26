@@ -3,12 +3,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows;
-
-using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Linq;
-using System.Printing;
-using System.Windows.Documents;
 
 namespace DayPolotter.MVVM.ViewModel
 {

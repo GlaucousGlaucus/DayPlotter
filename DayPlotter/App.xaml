@@ -8,19 +8,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Themes/Util/AppColorHome.xaml"/>
-                <ResourceDictionary Source="./Themes/Util/AppTextHome.xaml"/>
                 <ResourceDictionary Source="./Assets/Icons/SVGS.xaml"/>
-                <ResourceDictionary Source="./Themes/ButtonTheme1.xaml"/>
-                <ResourceDictionary Source="./Themes/RadioBtnTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/PomoTimerTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/PomoTimerTheme2.xaml"/>
-                <ResourceDictionary Source="./Themes/TimerPresetTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/TimerControlBtnTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/TaskThemes/ListTaskViewTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/TaskThemes/TaskRepeatBtnTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/TaskThemes/TaskCtrlBtnTheme.xaml"/>
-                <ResourceDictionary Source="./Themes/TaskThemes/TaskListTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/Util/AppColorHub.xaml"/>
+                <ResourceDictionary Source="./Themes/Util/AppTextHub.xaml"/>
+                <ResourceDictionary Source="./Themes/Theme/MainWindThemes.xaml"/>
+                <ResourceDictionary Source="./Themes/Theme/PomoThemes.xaml"/>
+                <ResourceDictionary Source="./Themes/Theme/TaskThemes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

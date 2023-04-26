@@ -46,13 +46,13 @@
                     Content="🗕"
                     Margin="0,0,2,0"
                     Padding="0,0,0,5"
-                    Style="{StaticResource ButtonTheme1}"
+                    Style="{StaticResource MainWindowControlBtnTheme}"
                     Click="MinimizeWindow"/>
             
             <Button Width="30"
                     Height="30"
                     Content="✕"
-                    Style="{StaticResource ButtonTheme1}"
+                    Style="{StaticResource MainWindowControlBtnTheme}"
                     Click="CloseWindow"/>
 
         </StackPanel>

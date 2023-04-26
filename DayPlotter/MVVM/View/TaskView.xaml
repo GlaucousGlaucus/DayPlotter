@@ -28,12 +28,6 @@
                    Foreground="{StaticResource App.Colors.Main.Heading}"
                    HorizontalAlignment="Center"
                    Margin="0,5,0,0"/>
-            <!--<TextBlock Text="Task Management" 
-                   FontSize="30"
-                   Foreground="{StaticResource App.Colors.Main.Heading}"
-                   HorizontalAlignment="Center"
-                       Grid.Column="1"
-                   Margin="0,5,0,0"/>-->
 
             <ListView ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" ItemTemplate="{StaticResource ListViewItemTemplate1}" Grid.Row="1"
                       Margin="10,0,10,10"
@@ -191,29 +185,9 @@
                     <FlowDocumentScrollViewer
                         IsHitTestVisible="False"
                         VerticalScrollBarVisibility="Hidden"
-                        IsToolBarVisible="False">
-                        <FlowDocument>
-                            <Paragraph>
-                                The Tasks Feature of this App
-                                provides you with tools to create
-                                and manage your daily tasks and
-                                keep track of them.
-                            </Paragraph>
-                            <Paragraph>
-                                You can also make certain tasks
-                                repeat on selected days using 
-                                the panel above.
-                            </Paragraph>
-                            <Paragraph>
-                                <Bold>NOTE:</Bold> Whenever you
-                                edit a task make sure to save
-                                changes using the
-                                <Image Width="20" Source="{StaticResource add_taskDrawingImage}"/>
-                                Button.
-                                <Italic>This will be changed soon.</Italic>
-                            </Paragraph>
-                        </FlowDocument>
-                    </FlowDocumentScrollViewer>
+                        IsToolBarVisible="False"
+                        Unloaded="FlowDocumentScrollViewer_Unloaded"
+                        Document="{StaticResource App.Doc.TaskInfo}"/>
                 </Border>
             </StackPanel>
         </Grid>

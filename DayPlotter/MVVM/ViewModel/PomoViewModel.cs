@@ -1,5 +1,9 @@
 ﻿using DayPolotter.Core;
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace DayPolotter.MVVM.ViewModel
@@ -55,17 +59,6 @@ namespace DayPolotter.MVVM.ViewModel
             set { _timer = value; OnPropertyChanged(); }
         }
 
-        private void timer_ticks(object sender, EventArgs e)
-        {
-            CurrentTime -= new TimeSpan(0, 0, 1);
-            if (CurrentTime.TotalSeconds <= 0)
-            {
-                _timer.Stop();
-                IsFinished = true;
-                StartStopText = StartStopBtnText();
-                
-            }
-        }
 
         private string _startStopText;
 
@@ -92,13 +85,20 @@ namespace DayPolotter.MVVM.ViewModel
         }
 
 
+        private void _timer_ticks(object sender, EventArgs e)
+        {
+            CurrentTime -= new TimeSpan(0, 0, 1);
+            if (CurrentTime.TotalSeconds <= 0)
+            {
+                _timer.Stop();
+                IsFinished = true;
+                StartStopText = StartStopBtnText();
+                
+            }
+        }
 
-        //TODO the timers configurable
-        //private TimeSpan COUNTDOWN_TIME = new TimeSpan(0, 25, 0);
-        //private TimeSpan BREAK_TIME = new TimeSpan(0, 5, 0);
         private string _btn_start_text = "Pl";
         private string _btn_stop_text = "Pa";
-
 
         public string StartStopBtnText()
         {
@@ -107,10 +107,10 @@ namespace DayPolotter.MVVM.ViewModel
 
         public PomoViewModel()
         {
-            StartStopText = _btn_start_text;
+            _startStopText = _btn_start_text;
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(1000);
-            _timer.Tick += new EventHandler(timer_ticks);
+            _timer.Tick += new EventHandler(_timer_ticks);
             CountDownTime = new TimeSpan(0, 25, 0);
             BreakTime = new TimeSpan(0, 5, 0);
             CurrentTime = CountDownTime;

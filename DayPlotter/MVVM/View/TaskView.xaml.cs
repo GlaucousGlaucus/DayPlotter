@@ -24,5 +24,11 @@ namespace DayPolotter.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void FlowDocumentScrollViewer_Unloaded(object sender, RoutedEventArgs e)
+        {
+            FlowDocumentScrollViewer v = sender as FlowDocumentScrollViewer;
+            v.Document = null;
+        }
     }
 }

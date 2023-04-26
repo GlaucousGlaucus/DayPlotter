@@ -20,8 +20,8 @@
                     <FlowDocumentScrollViewer 
                         Width="700"
                         Margin="30,0,0,0"
-                        Unloaded="FlowDocumentScrollViewer_Unloaded"
                         Document="{StaticResource App.Doc.Welcome}"
+                        Unloaded="FlowDocumentScrollViewer_Unloaded"
                         IsToolBarVisible="False"
                         VerticalScrollBarVisibility="Hidden"/>
                 </Grid>

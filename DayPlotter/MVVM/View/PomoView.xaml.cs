@@ -14,8 +14,7 @@ namespace DayPolotter.MVVM.View
             InitializeComponent();
         }
 
-
-        private void TimeTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        public void TimeTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             TextBox box = ((TextBox)e.Source);
@@ -30,7 +29,7 @@ namespace DayPolotter.MVVM.View
             e.Handled = flag;
         }
 
-        private void TimeBox_KeyPrev(object sender, KeyEventArgs e)
+        public void TimeBox_KeyPrev(object sender, KeyEventArgs e)
         {
             int del_or_bak = e.Key == Key.Back ? -1 : e.Key == Key.Delete ? 1 : 0;
             bool keyPresses = e.Key == Key.Space;
@@ -38,10 +37,11 @@ namespace DayPolotter.MVVM.View
             {
                 TextBox box = ((TextBox)e.Source);
                 char[] chars = box.Text.ToCharArray();
-                box.CaretIndex += chars.ElementAtOrDefault(box.CaretIndex + (del_or_bak==-1?-1:0)).ToString() == ":" ? del_or_bak : 0;
+                box.CaretIndex += chars.ElementAtOrDefault(box.CaretIndex + (del_or_bak == -1 ? -1 : 0)).ToString() == ":" ? del_or_bak : 0;
                 e.Handled = box.CaretIndex < 0 || box.CaretIndex > 8;
             }
             e.Handled = e.Handled || keyPresses;
         }
+
     }
 }
