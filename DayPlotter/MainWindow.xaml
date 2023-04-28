@@ -55,7 +55,7 @@
                     Foreground="{StaticResource App.Colors.Main.Heading}"
                     Style="{StaticResource MainWindowControlBtnTheme}"
                     Click="MinimizeWindow"/>
-            
+
             <Button Width="30"
                     Height="30"
                     Content="✕"
@@ -101,7 +101,7 @@
                                Margin="20,0,0,0"/>
                 </StackPanel>
             </RadioButton>
-            <RadioButton FontSize="25"
+            <RadioButton FontSize="25" 
                          Foreground="{StaticResource App.Colors.Main.Buttons.MenuSelect}"
                          Style="{StaticResource RadioBtnTheme}"
                          Command="{Binding TaskViewCommand}">

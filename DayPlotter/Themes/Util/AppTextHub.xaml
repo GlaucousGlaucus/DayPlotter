@@ -1,13 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <FlowDocument x:Key="App.Doc.Welcome" Background="#f0eFcF"
-                  Foreground="#b35000"
-                                      FontFamily="ComicSansMs"
-                                      FontSize="20">
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-    </FlowDocument>
-
     <FlowDocument x:Key="App.Doc.Features" Background="Transparent"
                   Foreground="#b35000"
                                       FontFamily="ComicSansMs"

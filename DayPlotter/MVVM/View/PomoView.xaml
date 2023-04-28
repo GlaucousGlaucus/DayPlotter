@@ -9,9 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900"
              Background="{StaticResource App.Colors.Pomo.Background}">
-    <!--<UserControl.Resources>
-        <Converters:TimeConverter x:Key="TimeConverter"/>
-    </UserControl.Resources>-->
     <UserControl.DataContext>
         <viewModel:PomoViewModel/>
     </UserControl.DataContext>

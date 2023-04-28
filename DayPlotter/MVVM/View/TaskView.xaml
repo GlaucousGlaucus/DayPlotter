@@ -29,7 +29,10 @@
                    HorizontalAlignment="Center"
                    Margin="0,5,0,0"/>
 
-            <ListView Style="{DynamicResource TaskListViewStyle}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" ItemTemplate="{StaticResource ListViewItemTemplate1}" Grid.Row="1"
+            <ListView Style="{DynamicResource TaskListViewStyle}" 
+                      ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" 
+                      ItemTemplate="{StaticResource ListViewItemTemplate1}" 
+                      Grid.Row="1"
                       Margin="10,0,10,10"
                       Height="Auto"
                       Background="{StaticResource App.Colors.Task.ListView.Background}"

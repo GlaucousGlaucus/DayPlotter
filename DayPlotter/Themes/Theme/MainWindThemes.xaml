@@ -28,12 +28,12 @@
                 </Setter.Value>
 
             </Setter>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="{StaticResource App.Colors.Main.Button.Background}"/>
         </Style.Setters>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FFFFFF"/>
+                <Setter Property="Background" Value="{StaticResource App.Colors.Main.Button.Background.Selected}"/>
             </Trigger>
         </Style.Triggers>
 
@@ -48,29 +48,23 @@
                         <Grid VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch"
                               Background="{TemplateBinding Background}">
-
                             <ContentControl Content="{TemplateBinding Content}" 
                                             VerticalAlignment="Center"/>
-
-                            <!--<TextBlock Text="{TemplateBinding Content}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"/>-->
-
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="{StaticResource App.Colors.Main.RadioButton.Background}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="50"/>
         </Style.Setters>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#74919A"/>
+                <Setter Property="Background" Value="{StaticResource App.Colors.Main.RadioButton.Background.Selected}"/>
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#bbd686"/>
+                <Setter Property="Background" Value="{StaticResource App.Colors.Main.RadioButton.Background.Checked}"/>
             </Trigger>
         </Style.Triggers>
 

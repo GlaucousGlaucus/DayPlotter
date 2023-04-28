@@ -7,7 +7,14 @@
     <SolidColorBrush x:Key="App.Colors.Main.Background" Color="#4A5784"/>
     <SolidColorBrush x:Key="App.Colors.Main.Heading" Color="#FF9900"/>
     <SolidColorBrush x:Key="App.Colors.Main.Pane" Color="#2F4858"/>
-    
+
+    <SolidColorBrush x:Key="App.Colors.Main.Button.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Button.Background.Selected" Color="#FFFFFF"/>
+
+    <SolidColorBrush x:Key="App.Colors.Main.RadioButton.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="App.Colors.Main.RadioButton.Background.Selected" Color="#74919A"/>
+    <SolidColorBrush x:Key="App.Colors.Main.RadioButton.Background.Checked" Color="#bbd686"/>
+
     <!--Pomo Screen Colors-->
     <SolidColorBrush x:Key="App.Colors.Pomo.Background" Color="Tomato"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Heading" Color="White"/>
@@ -57,5 +64,5 @@
     <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="#f0eFcF"/>
     <SolidColorBrush x:Key="App.Colors.Task.ListView.Border" Color="#c35000"/>
     <SolidColorBrush x:Key="App.Colors.Task.ListView.Text" Color="#b35000"/>
-
+  
 </ResourceDictionary>
