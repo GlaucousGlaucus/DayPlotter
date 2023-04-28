@@ -81,9 +81,10 @@
                                HorizontalAlignment="Center"
                                Margin="0,10,0,0"/>
 
-                            <StackPanel Margin="-5,20,0,0"
+                            <StackPanel Margin="0,20,0,0"
                                 HorizontalAlignment="Center">
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
                                     <CheckBox Style="{DynamicResource TaskRepBtnTheme}" IsChecked="{Binding RepSunday}"
                                       Command="{Binding RepDaySaveCmd}"
                                       Margin="0,0,0,0"
@@ -103,7 +104,7 @@
                                       Margin="10,0,0,0" Style="{DynamicResource TaskRepBtnTheme}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"
-                                            Margin="0,10,0,0"
+                                            Margin="-5,10,0,0"
                                             HorizontalAlignment="Center">
                                     <CheckBox IsChecked="{Binding RepThursday}"
                                       Command="{Binding RepDaySaveCmd}"

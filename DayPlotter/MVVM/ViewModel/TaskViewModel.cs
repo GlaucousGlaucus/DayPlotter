@@ -275,8 +275,8 @@ namespace DayPolotter.MVVM.ViewModel
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 string sql = String.Format(
-                    "UPDATE TEST_TABLE SET COMPLETED=FALSE WHERE REPEAT_TASK LIKE \"%{0}%\""
-                    , day_abbv_chars[(int)(DateTime.Now.DayOfWeek)]);
+                    "UPDATE TEST_TABLE SET COMPLETED=FALSE WHERE REPEAT_TASK LIKE \"%{0}%\" and completed_on != \"{1}\""
+                    , day_abbv_chars[(int)(DateTime.Now.DayOfWeek)], DateTime.Today.Date.ToString("yyyy-MM-dd"));
                 new MySqlCommand(sql, conn).ExecuteNonQuery();
                 sql = "SELECT * FROM Test_table ORDER BY ID";
                 MySqlDataReader rdr = new MySqlCommand(sql, conn).ExecuteReader();
@@ -310,7 +310,7 @@ namespace DayPolotter.MVVM.ViewModel
                     {
                         int selID = selItem.ID;
                         string sql = String.Format(
-                            "UPDATE TEST_TABLE SET COMPLETED = true WHERE ID={0}", selID);
+                            "UPDATE TEST_TABLE SET COMPLETED = true , Completed_on=\"{0}\" WHERE ID={1}", DateTime.Today.Date.ToString("yyyy-MM-dd"), selID);
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
                         cmd.ExecuteNonQuery();
                         _taskItems?.RemoveAt(SelectedIndex);
