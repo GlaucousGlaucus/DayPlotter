@@ -1,11 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--Main Screen Colors-->
-    <SolidColorBrush x:Key="App.Colors.Main.TitleBar" Color="Wheat"/>
-    <SolidColorBrush x:Key="App.Colors.Main.Logo" Color="Brown"/>
+    <SolidColorBrush x:Key="App.Colors.Main.TitleBar" Color="#2F4858"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Logo" Color="#FF9900"/>
     <SolidColorBrush x:Key="App.Colors.Main.Buttons.MenuSelect" Color="White"/>
-    <SolidColorBrush x:Key="App.Colors.Main.Background" Color="#FFF9DE"/>
-    <SolidColorBrush x:Key="App.Colors.Main.Heading" Color="#b35000"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Background" Color="#4A5784"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Heading" Color="#FF9900"/>
+    <SolidColorBrush x:Key="App.Colors.Main.Pane" Color="#2F4858"/>
     
     <!--Pomo Screen Colors-->
     <SolidColorBrush x:Key="App.Colors.Pomo.Background" Color="Tomato"/>
@@ -13,7 +14,7 @@
     <SolidColorBrush x:Key="App.Colors.Pomo.Timer" Color="White"/> 
     <SolidColorBrush x:Key="App.Colors.Pomo.TimerBorder" Color="Wheat"/>
 
-    <SolidColorBrush x:Key="App.Colors.Pomo.ListView.Background" Color="White"/>
+    <SolidColorBrush x:Key="App.Colors.Pomo.ListView.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="App.Colors.Pomo.Menu.Border" Color="Black"/>
     
     <SolidColorBrush x:Key="App.Colors.Pomo.Button.Static.Background" Color="Transparent"/>
@@ -28,10 +29,11 @@
 
     <!--Task Screen Colors-->
     <SolidColorBrush x:Key="App.Colors.Task.Menu.Border" Color="#bbd686"/>
+    
     <SolidColorBrush x:Key="App.Colors.Task.Button.Border" Color="#b35000"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Background" Color="White"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Selected" Color="White"/>
-
+    <SolidColorBrush x:Key="App.Colors.Task.Button.CheckedNHov" Color="#7baF56"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.MouseOver" Color="#CFC9AE"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Pressed" Color="#7bFF56"/>
     <SolidColorBrush x:Key="App.Colors.Task.Button.Checked" Color="#bbd686"/>
@@ -51,8 +53,9 @@
     <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedInactive.Border" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedActive.Background" Color="#bbd686"/>
     <SolidColorBrush x:Key="App.Colors.Task.Item.SelectedActive.Border" Color="#4bFF06"/>
-
-    <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="Transparent"/>
+    
+    <SolidColorBrush x:Key="App.Colors.Task.ListView.Background" Color="#f0eFcF"/>
     <SolidColorBrush x:Key="App.Colors.Task.ListView.Border" Color="#c35000"/>
+    <SolidColorBrush x:Key="App.Colors.Task.ListView.Text" Color="#b35000"/>
 
 </ResourceDictionary>

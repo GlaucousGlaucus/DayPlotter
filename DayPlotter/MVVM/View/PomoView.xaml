@@ -185,14 +185,15 @@
                    FontWeight="SemiBold"
                    Margin="0,20,0,0"/>
 
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1" Margin="0,100,0,0">
                     <ListView ItemTemplate="{DynamicResource TimerPresetsLVDataTemplate}"
                               ItemContainerStyle="{DynamicResource TimerPresetsLVContainer}"
                               Margin="15"
                               Height="300"
-                              Background="{StaticResource App.Colors.Pomo.ListView.Background}"
+                              Style="{StaticResource TimerPresetTheme}"
+                              Background="Transparent"
                               BorderThickness="2"
-                              BorderBrush="{StaticResource App.Colors.Pomo.Menu.Border}"
+                              BorderBrush="{StaticResource App.Colors.Pomo.TimerBorder}"
                               ItemsSource="{Binding TimePresets}"
                               SelectedIndex="{Binding SelectedPresetIndex}"/>
 

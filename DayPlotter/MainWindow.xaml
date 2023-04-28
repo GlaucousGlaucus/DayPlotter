@@ -1,5 +1,9 @@
 ﻿<!-- https://colorhunt.co/palette/a6d0ddff6969ffd3b0fff9de -->
 <!-- A6D0DD FF6969 FFD3B0 FFF9DE-->
+<!--
+#FF9900 #FF675B #D6578B 
+#8E5B9A #4A5784 #2F4858
+-->
 <Window x:Class="DayPolotter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,6 +13,8 @@
         xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
         mc:Ignorable="d"
         Width="1200" Height="800" 
+        Title="DayPlotter"
+        Icon="{StaticResource timer_lightDrawingImage}"
         WindowStyle="None"
         Background="{StaticResource App.Colors.Main.Background}"
         ResizeMode="NoResize">
@@ -46,6 +52,7 @@
                     Content="🗕"
                     Margin="0,0,2,0"
                     Padding="0,0,0,5"
+                    Foreground="{StaticResource App.Colors.Main.Heading}"
                     Style="{StaticResource MainWindowControlBtnTheme}"
                     Click="MinimizeWindow"/>
             
@@ -53,11 +60,12 @@
                     Height="30"
                     Content="✕"
                     Style="{StaticResource MainWindowControlBtnTheme}"
+                    Foreground="{StaticResource App.Colors.Main.Heading}"
                     Click="CloseWindow"/>
 
         </StackPanel>
 
-        <Border Background="#A6D0DD"
+        <Border Background="{StaticResource App.Colors.Main.Pane}"
                 Grid.Row="1"/>
 
         <StackPanel Grid.Row="1"
@@ -112,7 +120,7 @@
 
         <ContentControl Grid.Row="1"
                         Grid.Column="1"
-                        Margin="10"
+                        Margin="0"
                         Content="{Binding CurrentView}"/>
         <Label Content="DayPlotter (c) by Arpit Benjamin"
                Grid.Row="1"

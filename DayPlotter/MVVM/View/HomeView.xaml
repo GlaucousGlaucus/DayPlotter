@@ -6,41 +6,20 @@
              xmlns:local="clr-namespace:DayPolotter.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <ScrollViewer HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  VerticalScrollBarVisibility="Hidden">
-        <StackPanel Margin="25,0,0,0">
-            <Label Content="Welcome"
-                   FontSize="25"
-                   Foreground="{StaticResource App.Colors.Main.Heading}"
-                   FontWeight="DemiBold"/>
-            <StackPanel Orientation="Horizontal">
-                <Grid>
-                    <FlowDocumentScrollViewer 
-                        Width="700"
-                        Margin="30,0,0,0"
-                        Document="{StaticResource App.Doc.Welcome}"
-                        Unloaded="FlowDocumentScrollViewer_Unloaded"
-                        IsToolBarVisible="False"
-                        VerticalScrollBarVisibility="Hidden"/>
-                </Grid>
-            </StackPanel>
-            <Label Content="Featues"
-                   FontSize="25"
-                   Foreground="{StaticResource App.Colors.Main.Heading}"
-                   FontWeight="DemiBold"/>
-            <StackPanel Orientation="Horizontal">
-                <Grid>
-                    <FlowDocumentScrollViewer 
-                        Width="700"
+
+    <Grid HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+        <Border Margin="25" CornerRadius="10" Background="#f0eFcF">
+            <Grid>
+            <FlowDocumentScrollViewer 
+                        Width="Auto"
+                        Height="Auto"
                         Margin="30,0,0,0"
                         Unloaded="FlowDocumentScrollViewer_Unloaded"
                         Document="{StaticResource App.Doc.Features}"
                         IsToolBarVisible="False"
                         VerticalScrollBarVisibility="Hidden"/>
-                </Grid>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
 </UserControl>

@@ -63,7 +63,7 @@
     </Style>
 
     <!-- Timer -->
-    
+
     <Style x:Key="TimerPresetTheme" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
@@ -78,7 +78,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
-                    <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="1" SnapsToDevicePixels="true">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            CornerRadius="10"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Padding="1" SnapsToDevicePixels="true">
                         <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </ScrollViewer>
@@ -100,14 +104,48 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Timer Presets -->
 
+    <Style TargetType="{x:Type TextBlock}" x:Key="TimerPresetsLVDTTextBlock">
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+
+    <Style TargetType="{x:Type Border}" x:Key="TimerPresetsLVDTBorder">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
     <DataTemplate x:Key="TimerPresetsLVDataTemplate">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Path=NormalTime}"/>
-            <TextBlock Text="{Binding Path=BreakTime}" Margin="20,0,0,0"/>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource TimerPresetsLVDTBorder}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                    <Image Width="20" Source="{StaticResource timerDrawingImage}"/>
+                    <TextBlock Text="{Binding Path=NormalTime}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                           Style="{StaticResource TimerPresetsLVDTTextBlock}"
+                       Grid.Column="0"
+                               Margin="20,0,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource TimerPresetsLVDTBorder}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                    <Image Width="20" Source="{StaticResource pauseDrawingImage}"/>
+                    <TextBlock Text="{Binding Path=BreakTime}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                           Style="{StaticResource TimerPresetsLVDTTextBlock}"
+                       Margin="20,0,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
     </DataTemplate>
 
 
@@ -121,11 +159,9 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Padding="{TemplateBinding Padding}" 
+                                CornerRadius="10"
                                 SnapsToDevicePixels="true">
-                            <ContentPresenter 
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <ContentPresenter Margin="10"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
