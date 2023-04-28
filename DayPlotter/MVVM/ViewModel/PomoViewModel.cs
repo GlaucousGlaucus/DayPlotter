@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using static Google.Protobuf.WellKnownTypes.Field.Types;
 
 namespace DayPolotter.MVVM.ViewModel
 {
@@ -51,16 +50,6 @@ namespace DayPolotter.MVVM.ViewModel
         {
             get { return _isNormalTime; }
             set { _isNormalTime = value; OnPropertyChanged(); }
-        }
-
-
-
-        private bool _isFinished;
-
-        public bool IsFinished
-        {
-            get { return _isFinished; }
-            set { _isFinished = value; OnPropertyChanged(); }
         }
 
 
@@ -121,15 +110,14 @@ namespace DayPolotter.MVVM.ViewModel
             if (CurrentTime.TotalSeconds <= 0)
             {
                 _timer.Stop();
-                IsFinished = true;
                 IsNormalTime = true;
                 StartStopText = StartStopBtnText();
 
             }
         }
 
-        private string _btn_start_text = "Pl";
-        private string _btn_stop_text = "Pa";
+        private string _btn_start_text = "Play";
+        private string _btn_stop_text = "Pause";
 
         public string StartStopBtnText()
         {
@@ -138,16 +126,15 @@ namespace DayPolotter.MVVM.ViewModel
 
         private void _setTimers()
         {
-            TimerPresetModel presetModel = _timePresets.ElementAtOrDefault(SelectedPresetIndex);
-            if (presetModel != null)
-            {
-                CountDownTime = presetModel.NormalTime;
-                BreakTime = presetModel.BreakTime;
-            } else
+            TimerPresetModel? presetModel = _timePresets.ElementAtOrDefault(SelectedPresetIndex);
+            if (presetModel == null)
             {
                 CountDownTime = new TimeSpan(0, 25, 0);
                 BreakTime = new TimeSpan(0, 5, 0);
+                return;
             }
+            CountDownTime = presetModel.NormalTime;
+            BreakTime = presetModel.BreakTime;
             if (!_timer.IsEnabled) CurrentTime = CountDownTime;
         }
 
@@ -181,10 +168,13 @@ namespace DayPolotter.MVVM.ViewModel
 
         public PomoViewModel()
         {
-            _startStopText = _btn_start_text;
-            _isNormalTime = true;
+            
             _selectedPresetIndex = 0;
             _timePresets = new ObservableCollection<TimerPresetModel>();
+            
+            _startStopText = _btn_start_text;
+            _isNormalTime = true;
+           
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(1000);
             _timer.Tick += new EventHandler(_timer_ticks);
@@ -193,7 +183,7 @@ namespace DayPolotter.MVVM.ViewModel
             MySqlConnection conn = new MySqlConnection(connStr);
             readSqlData(conn);
             _setTimers();
-            IsFinished = false;
+
             StartTimer = new RelayCommand(o =>
             {
                 if (_timer.IsEnabled) { _timer.Stop(); }
@@ -202,25 +192,26 @@ namespace DayPolotter.MVVM.ViewModel
                     if (CurrentTime.TotalSeconds <= 0) CurrentTime = StartedFrom;
                     _timer.Start();
                     StartedFrom = CurrentTime;
-                    IsFinished = false;
                 }
                 StartStopText = StartStopBtnText();
             });
+
             ResetTimer = new RelayCommand(o =>
             {
                 if (_timer.IsEnabled) _timer.Stop();
                 CurrentTime = StartedFrom;
                 StartStopText = StartStopBtnText();
             });
+
             BreakTimeTimer = new RelayCommand(_ =>
             {
                 if (_timer.IsEnabled) _timer.Stop();
                 StartedFrom = CurrentTime = BreakTime;
                 _timer.Start();
-                IsFinished = false;
                 IsNormalTime = false;
                 StartStopText = StartStopBtnText();
             });
+
             SaveCurrentPreset = new RelayCommand(o => 
             {
                 TimeSpan normTime = _timer.IsEnabled ? StartedFrom : CurrentTime;
@@ -231,6 +222,7 @@ namespace DayPolotter.MVVM.ViewModel
                 if (int.TryParse(new MySqlCommand(sql, conn).ExecuteScalar().ToString(), out int ind))
                 _timePresets.Add(new TimerPresetModel(ind, normTime, BreakTime));
             });
+
             DeletePreset = new RelayCommand(o => 
             {
                 TimerPresetModel? selItem = _timePresets.ElementAtOrDefault(SelectedPresetIndex);

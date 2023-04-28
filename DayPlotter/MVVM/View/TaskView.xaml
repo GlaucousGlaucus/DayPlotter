@@ -30,17 +30,10 @@
                    Margin="0,5,0,0"/>
 
             <ListView Style="{DynamicResource TaskListViewStyle}" 
-                      ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" 
-                      ItemTemplate="{StaticResource ListViewItemTemplate1}" 
                       Grid.Row="1"
                       Margin="10,0,10,10"
-                      Height="Auto"
-                      Background="{StaticResource App.Colors.Task.ListView.Background}"
-                      BorderThickness="3"
-                      BorderBrush="{StaticResource App.Colors.Task.Menu.Border}"
-                      ItemsSource="{Binding TaskItems}"
-                      SelectedIndex="{Binding SelectedIndex}">
-            </ListView>
+                      Name="TaskList"/>
+
 
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Border 
@@ -59,13 +52,15 @@
                            FontWeight="DemiBold"
                            Foreground="{StaticResource App.Colors.Task.ListView.Text}"
                            HorizontalAlignment="Center"/>
-                        <TextBox Style="{DynamicResource TaskInputTheme}" Width="250"
-                         Grid.Column="1"
-                        Grid.Row="1"
-                    HorizontalAlignment="Left"
-                         VerticalAlignment="Center"
-                    Margin="5,10,5,10"
-                    Text="{Binding TaskEntry, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox 
+                            Style="{DynamicResource TaskInputTheme}"
+                            Width="250"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="5,10,5,10"
+                            Text="{Binding TaskEntry, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--The Shennanigans-->
                         <StackPanel>
@@ -130,16 +125,17 @@
                         <!--The Control Btns-->
 
                         <StackPanel Orientation="Horizontal"
-                        Margin="0,50,0,0"
-                            HorizontalAlignment="Center"
-                        Grid.Column="1" Grid.Row="2">
+                                    Margin="0,50,0,0"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="1" 
+                                    Grid.Row="2">
                             <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
-                                Width="40" 
+                                    Width="40" 
                                     ToolTipService.InitialShowDelay="5000"
                                     ToolTipService.ShowDuration="5000"
                                     ToolTipService.BetweenShowDelay="7000"
                                     ToolTip="Add a Task"
-                                Command="{Binding AddTaskBtnCmd}">
+                                    Command="{Binding AddTaskBtnCmd}">
                                 <Image Source="{StaticResource addDrawingImage}"/>
                             </Button>
                             <Button Style="{DynamicResource TaskCtrlBtnTheme}" Height="40"
@@ -149,7 +145,7 @@
                             ToolTipService.BetweenShowDelay="7000"
                             ToolTip="Complete Selected Task"
                             Width="40" 
-                            IsEnabled="{Binding CompleteTaskBtnToggle}"
+                            IsEnabled="{Binding ElementName=TaskList, Path=SelectedItems.Count}"
                             Command="{Binding CompleteTaskBtnCmd}">
                                 <Image Source="{StaticResource doneDrawingImage}"/>
                             </Button>
@@ -160,7 +156,7 @@
                                     ToolTipService.ShowDuration="5000"
                                     ToolTipService.BetweenShowDelay="7000"
                                     ToolTip="Edit Selected Task"
-                            IsEnabled="{Binding EditTaskBtnToggle}"
+                            IsEnabled="{Binding ElementName=TaskList, Path=SelectedItems.Count}"
                             Command="{Binding SaveChangesBtnCmd}">
                                 <Image Source="{StaticResource add_taskDrawingImage}"/>
                             </Button>
@@ -171,7 +167,7 @@
                                     ToolTipService.ShowDuration="2000"
                                     ToolTipService.BetweenShowDelay="10000"
                                     ToolTip="Delete Selected Task"
-                            IsEnabled="{Binding DeleteTaskBtnToggle}"
+                            IsEnabled="{Binding ElementName=TaskList, Path=SelectedItems.Count}"
                                 Command="{Binding DelTaskCmd}">
                                 <Image Source="{StaticResource deleteDrawingImage}"/>
                             </Button>

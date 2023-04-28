@@ -1,5 +1,4 @@
 ﻿using DayPolotter.Core;
-using System;
 
 namespace DayPolotter.MVVM.ViewModel
 {

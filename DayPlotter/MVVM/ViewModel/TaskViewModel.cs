@@ -6,7 +6,6 @@ using System.Windows;
 using MySql.Data.MySqlClient;
 using System.Linq;
 using DayPlotter.MVVM.Models;
-using Google.Protobuf.WellKnownTypes;
 using System.Windows.Controls;
 
 namespace DayPolotter.MVVM.ViewModel
@@ -30,30 +29,6 @@ namespace DayPolotter.MVVM.ViewModel
         {
             get { return _repDays; }
             set { _repDays = value; OnPropertyChanged(); }
-        }
-
-        private bool _completeTaskBtnToggle;
-
-        public bool CompleteTaskBtnToggle
-        {
-            get { return _completeTaskBtnToggle; }
-            set { _completeTaskBtnToggle = value; OnPropertyChanged(); }
-        }
-
-        private bool _editTaskBtnToggle;
-        
-        public bool EditTaskBtnToggle
-        {
-            get { return _editTaskBtnToggle; }
-            set { _editTaskBtnToggle = value; OnPropertyChanged(); }
-        }
-
-        private bool _deleteTaskBtnToggle;
-
-        public bool DeleteTaskBtnToggle
-        {
-            get { return _deleteTaskBtnToggle; }
-            set { _deleteTaskBtnToggle = value; OnPropertyChanged(); }
         }
 
 
@@ -121,8 +96,8 @@ namespace DayPolotter.MVVM.ViewModel
             get { return _selectedIndex; }
             set
             {
+                System.Diagnostics.Debug.WriteLine(string.Format("Updating SI -> {0}", value));
                 _selectedIndex = value;
-                OnPropertyChanged();
                 if (value >= 0)
                 {
                     TaskModel? item = _taskItems.ElementAtOrDefault(value);
@@ -139,17 +114,38 @@ namespace DayPolotter.MVVM.ViewModel
                         RepThursday = reps[4];
                         RepFriday = reps[5];
                         RepSaturday = reps[6];
-                        CompleteTaskBtnToggle = true;
-                        EditTaskBtnToggle = true;
-                        DeleteTaskBtnToggle = true;
                     }
-                } else
-                {
-                    CompleteTaskBtnToggle = false;
-                    EditTaskBtnToggle = false;
-                    DeleteTaskBtnToggle = false;
                 }
+                OnPropertyChanged();
             }
+        }
+
+        public bool[] RepeatDayDecrypt(string repeatFreq)
+        {
+            bool[] rep_bool = new bool[7] { false, false, false, false, false, false, false };
+            if (repeatFreq == "Never" || repeatFreq.Length > 7)
+                return rep_bool;
+
+            for (int i = 0; i < rep_bool.Length; i++)
+            {
+                rep_bool[i] = repeatFreq.Contains(day_abbv_chars[i]);
+            }
+
+            return rep_bool;
+
+        }
+
+        public string RepeatDayEncrypt(bool[] repeatFreqBool)
+        {
+            if (repeatFreqBool.Length != 7 || repeatFreqBool.All(b => b == false)) return "Never";
+
+            string ret = "";
+            for (int i = 0; i < day_abbv_chars.Length; i++)
+            {
+                if (repeatFreqBool[i]) ret += day_abbv_chars[i].ToString();
+            }
+            return ret;
+
         }
 
         private string _repFreq;
@@ -184,38 +180,7 @@ namespace DayPolotter.MVVM.ViewModel
         public ObservableCollection<TaskModel> TaskItems
         {
             get { return _taskItems; }
-        }
-
-
-        private bool[] RepeatDayDecrypt(string repeatFreq)
-        {
-            bool[] rep_bool = new bool[7] { false, false, false, false, false, false, false };
-            if (repeatFreq == "Never" || repeatFreq.Length > 7)
-                return rep_bool;
-
-            char[] chars = new char[7] { 'S', 'M', 'T', 'W', 'A', 'F', 'B' };
-
-            for (int i = 0; i < rep_bool.Length; i++)
-            {
-                rep_bool[i] = repeatFreq.Contains(chars[i]);
-            }
-
-            return rep_bool;
-
-        }
-
-        private string RepeatDayEncrypt(bool[] repeatFreqBool)
-        {
-            if (repeatFreqBool.Length != 7 || repeatFreqBool.All(b => b == false)) return "Never";
-
-            string ret = "";
-            for (int i = 0; i < day_abbv_chars.Length; i++)
-            {
-                if (repeatFreqBool[i]) ret += day_abbv_chars[i].ToString();
-            }
-            return ret;
-
-        }
+        }        
 
         private void AddTaskItem(MySqlConnection conn)
         {
@@ -235,7 +200,7 @@ namespace DayPolotter.MVVM.ViewModel
             while (rdr.Read())
             {
                 if (int.TryParse(rdr[0].ToString(), out int sql_id))
-                _taskItems.Add(new TaskModel(sql_id, TaskEntry, DateTime.Now, RepeatFreq, false));
+                    _taskItems.Add(new TaskModel(sql_id, TaskEntry, DateTime.Now, RepeatFreq, false));
             }
             rdr.Close();
         }
@@ -251,7 +216,7 @@ namespace DayPolotter.MVVM.ViewModel
             {
                 MessageBox.Show("Select a task first to update!"); return;
             }
-            if (MessageBox.Show("Edit Task", "Do you want to update the selected task ?",
+            if (MessageBox.Show("Do you want to update the selected task ?", "Edit Task",
                 MessageBoxButton.YesNo, MessageBoxImage.Question,
                 MessageBoxResult.No).Equals(MessageBoxResult.No)) return;
             int selID = selItem.ID;
@@ -284,13 +249,11 @@ namespace DayPolotter.MVVM.ViewModel
                 {
                     if (int.TryParse(rdr[0].ToString(), out int taskid) &
                         DateTime.TryParse(rdr[2].ToString(), out DateTime date_result)
-                        & bool.TryParse(rdr[4].ToString(), out bool comp_result))
+                        & bool.TryParse(rdr[4].ToString(), out bool comp_result) & 
+                        (!comp_result))
                     {
-                        if (!comp_result)
-                        {
-                            _taskItems?.Add(new TaskModel(taskid,
-                                rdr[1].ToString(), date_result, rdr[3].ToString(), comp_result));
-                        }
+                        _taskItems?.Add(new TaskModel(taskid,
+                            rdr[1].ToString(), date_result, rdr[3].ToString(), comp_result));
                     }
                 }
                 rdr.Close();
@@ -325,22 +288,20 @@ namespace DayPolotter.MVVM.ViewModel
                 RepDaySaveCmd = new RelayCommand(o =>
                 {
                     TaskModel? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
-                    if (_taskItems != null & selItem != null)
-                    {
-                        int selID = selItem.ID;
-                        bool[] repDays = new bool[7] { RepSunday, RepMonday,
+                    if (_taskItems == null || selItem == null) return;
+                    int selID = selItem.ID;
+                    bool[] repDays = new bool[7] { RepSunday, RepMonday,
                             RepTuesday, RepWednesday, RepThursday, RepFriday, RepSaturday};
-                        RepeatFreq = RepeatDayEncrypt(repDays);
-                        string sql = String.Format(
-                            "UPDATE TEST_TABLE SET Repeat_task = \"{0}\" WHERE ID={1}",
-                            RepeatFreq, selID);
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteNonQuery();
-                        int SelectedIndexPrev = SelectedIndex;
-                        _taskItems[SelectedIndex] = new TaskModel
-                        (selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
-                        SelectedIndex = SelectedIndexPrev;
-                    }
+                    RepeatFreq = RepeatDayEncrypt(repDays);
+                    string sql = String.Format(
+                        "UPDATE TEST_TABLE SET Repeat_task = \"{0}\" WHERE ID={1}",
+                        RepeatFreq, selID);
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                    int SelectedIndexPrev = SelectedIndex;
+                    _taskItems[SelectedIndex] = new TaskModel
+                    (selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
+                    SelectedIndex = SelectedIndexPrev;
                 });
 
                 DelTaskCmd = new RelayCommand(o =>
@@ -349,14 +310,14 @@ namespace DayPolotter.MVVM.ViewModel
                     {
                         MessageBox.Show("Invalid Task Entry!"); return;
                     }
-                    TaskModel? selItem = _taskItems.ElementAtOrDefault(SelectedIndex);
+                    TaskModel? selItem = _taskItems?.ElementAtOrDefault(SelectedIndex);
                     if (selItem == null)
                     {
                         MessageBox.Show("Select a task first to update!"); return;
                     }
                     string sql = String.Format("DELETE FROM TEST_TABLE WHERE ID={0}", selItem.ID);
                     new MySqlCommand(sql, conn).ExecuteNonQuery();
-                    _taskItems.RemoveAt(SelectedIndex);
+                    _taskItems?.RemoveAt(SelectedIndex);
                 });
             }
             catch (Exception ex)

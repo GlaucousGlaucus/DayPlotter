@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace DayPlotter.MVVM.Models
 {
@@ -17,5 +18,6 @@ namespace DayPlotter.MVVM.Models
         public DateTime AddedOn { get; set; }
         public bool Completed { get; set; }
         public string RepeatDays { get; set; }
+
     }
 }

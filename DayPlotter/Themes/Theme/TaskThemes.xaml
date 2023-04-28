@@ -10,9 +10,14 @@
         </StackPanel>
     </DataTemplate>
     <Style x:Key="TaskListViewStyle" TargetType="{x:Type ListView}">
-        <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource App.Colors.Task.ListView.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource App.Colors.Task.Menu.Border}"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ListViewItemContainerStyle1}"/>
+        <Setter Property="ItemTemplate" Value="{StaticResource ListViewItemTemplate1}"/>
+        <Setter Property="ItemsSource" Value="{Binding TaskItems}"/>
+        <Setter Property="SelectedIndex" Value="{Binding SelectedIndex}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -26,8 +31,9 @@
                     <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="1" SnapsToDevicePixels="true">
                         <Grid>
                             <StackPanel HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                <Image x:Name="TaskBGImg" 
+                                        VerticalAlignment="Center"
+                                        x:Name="TaskBGImg">
+                                <Image 
                                    Source="{StaticResource taskDrawingImage}"
                                    Width="50"
                                    Height="50"
@@ -47,8 +53,7 @@
                             <Setter Property="Visibility" TargetName="TaskBGImg" Value="Collapsed"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                            <Setter Property="Opacity" TargetName="Bd" Value="0.5"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

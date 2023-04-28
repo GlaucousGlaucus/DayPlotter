@@ -60,7 +60,7 @@
                                                 AncestorType={x:Type Button},
                                                 AncestorLevel=1},
                                                 Path=IsMouseOver}" Value="True"/>
-                                            <Condition Binding="{Binding StartStopText}" Value="Pa"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="PausePa"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pauseDrawingImage}"/>
                                     </MultiDataTrigger>
@@ -72,7 +72,7 @@
                                                 AncestorType={x:Type Button},
                                                 AncestorLevel=1},
                                                 Path=IsMouseOver}" Value="True"/>
-                                            <Condition Binding="{Binding StartStopText}" Value="Pl"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Play"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource playDrawingImage}"/>
                                     </MultiDataTrigger>
@@ -84,7 +84,7 @@
                                                 AncestorType={x:Type Button},
                                                 AncestorLevel=1},
                                                 Path=IsMouseOver}" Value="False"/>
-                                            <Condition Binding="{Binding StartStopText}" Value="Pa"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Pause"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pause_lightDrawingImage}"/>
                                     </MultiDataTrigger>
