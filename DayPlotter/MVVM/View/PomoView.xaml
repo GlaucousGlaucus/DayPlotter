@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DayPolotter.MVVM.View"
              xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
-             xmlns:Converters="clr-namespace:DayPolotter.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900"
              Background="{StaticResource App.Colors.Pomo.Background}">
@@ -30,7 +29,7 @@
                          StrokeThickness="5"
                          Stroke="{StaticResource App.Colors.Pomo.TimerBorder}"
                          IsHitTestVisible="False"/>
-                <TextBox Text="{Binding CurrentTime,
+                <TextBox Text="{Binding CurrTime,
                     UpdateSourceTrigger=PropertyChanged}"
                          Height="40" 
                          Margin="38,0,0,0"
@@ -46,7 +45,7 @@
                         Width="100">
                 <Button Style="{DynamicResource TimerControlBtnTheme}" 
                     Command="{Binding StartTimer}"
-                    IsEnabled="{Binding IsNormalTime}"
+                    IsEnabled="{Binding IsItNormalTime}"
                     Margin="0,0,0,0">
                     <Image>
                         <Image.Style>
@@ -60,7 +59,7 @@
                                                 AncestorType={x:Type Button},
                                                 AncestorLevel=1},
                                                 Path=IsMouseOver}" Value="True"/>
-                                            <Condition Binding="{Binding StartStopText}" Value="PausePa"/>
+                                            <Condition Binding="{Binding StartStopText}" Value="Pause"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="Source" Value="{StaticResource pauseDrawingImage}"/>
                                     </MultiDataTrigger>
@@ -96,7 +95,7 @@
 
                 <Button Style="{DynamicResource TimerControlBtnTheme}"
                     Command="{Binding ResetTimer}"
-                    IsEnabled="{Binding IsNormalTime}"
+                    IsEnabled="{Binding IsItNormalTime}"
                     Margin="20,0,0,0">
                     <Image Width="30" Height="30">
                         <Image.Style>
@@ -136,7 +135,7 @@
                          Height="40" 
                          Margin="35,0,0,15"
                          FontSize="35"
-                         IsEnabled="{Binding IsNormalTime}"
+                         IsEnabled="{Binding IsItNormalTime}"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"
                          Background="Transparent"
@@ -148,7 +147,7 @@
             </Grid>
             <Button Style="{DynamicResource TimerControlBtnTheme}"
                     Margin="0,10,0,0"    
-                    IsEnabled="{Binding IsNormalTime}"
+                    IsEnabled="{Binding IsItNormalTime}"
                     Command="{Binding BreakTimeTimer}"
                     Width="200">
                 <TextBlock Text="Start Break">
@@ -219,7 +218,7 @@
 
                     <Button Style="{DynamicResource TimerControlBtnTheme}"
                     Command="{Binding DeletePreset}"
-                    IsEnabled="{Binding IsNormalTime}"
+                    IsEnabled="{Binding IsItNormalTime}"
                     Margin="30,0,0,0">
                         <Image Width="30" Height="30">
                             <Image.Style>

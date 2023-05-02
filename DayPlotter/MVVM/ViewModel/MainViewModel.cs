@@ -1,10 +1,13 @@
-﻿using DayPolotter.Core;
+﻿using DayPlotter.Core;
+using DayPolotter.Core;
+using System;
+using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace DayPolotter.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {
-
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand PomoViewCommand { get; set; }
         public RelayCommand TaskViewCommand { get; set; }
@@ -20,7 +23,6 @@ namespace DayPolotter.MVVM.ViewModel
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
-
 
         public MainViewModel()
         {

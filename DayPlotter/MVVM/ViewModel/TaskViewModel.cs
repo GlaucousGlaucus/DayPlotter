@@ -13,8 +13,8 @@ namespace DayPolotter.MVVM.ViewModel
 
     class TaskViewModel : ObservableObject
     {
-        Regex taskInRegex = new("([a-z]|[A-Z]|[0-9])+");
-        char[] day_abbv_chars = new char[7] { 'S', 'M', 'T', 'W', 'A', 'F', 'B' };
+        readonly Regex taskInRegex = new("([a-z]|[A-Z]|[0-9])+");
+        readonly char[] day_abbv_chars = new char[7] { 'S', 'M', 'T', 'W', 'A', 'F', 'B' };
         public RelayCommand AddTaskBtnCmd { get; set; }
         public RelayCommand CompleteTaskBtnCmd { get; set; }
         public RelayCommand SaveChangesBtnCmd { get; set; }
@@ -192,10 +192,10 @@ namespace DayPolotter.MVVM.ViewModel
                             RepTuesday, RepWednesday, RepThursday, RepFriday, RepSaturday};
             RepeatFreq = RepeatDayEncrypt(repDays);
             string add_date = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
-            string sql = String.Format("INSERT INTO Test_table (task, AddedOn, Completed, Repeat_Task) VALUES" +
+            string sql = string.Format("INSERT INTO Test_table (task, AddedOn, Completed, Repeat_Task) VALUES" +
                 "('{0}', '{1}', {2}, '{3}')", TaskEntry, add_date, false, RepeatFreq);
             new MySqlCommand(sql, conn).ExecuteNonQuery();
-            sql = String.Format("Select MAX(ID) from Test_table");
+            sql = string.Format("Select MAX(ID) from Test_table");
             MySqlDataReader rdr = new MySqlCommand(sql, conn).ExecuteReader();
             while (rdr.Read())
             {
@@ -223,10 +223,11 @@ namespace DayPolotter.MVVM.ViewModel
             bool[] repDays = new bool[7] { RepSunday, RepMonday,
                             RepTuesday, RepWednesday, RepThursday, RepFriday, RepSaturday};
             RepeatFreq = RepeatDayEncrypt(repDays);
-            string sql = String.Format("UPDATE TEST_TABLE SET TASK = \"{0}\", REPEAT_TASK=\"{1}\" WHERE ID={2}",
+            string sql = string.Format("UPDATE TEST_TABLE SET TASK = \"{0}\", REPEAT_TASK=\"{1}\" WHERE ID={2}",
                 TaskEntry, RepeatFreq, selID);
             new MySqlCommand(sql, conn).ExecuteNonQuery();
-            _taskItems[SelectedIndex] = new TaskModel(selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
+            _taskItems[SelectedIndex].TaskName = TaskEntry;
+            _taskItems[SelectedIndex].RepeatDays = RepeatFreq;
         }
 
         public TaskViewModel()
@@ -234,12 +235,12 @@ namespace DayPolotter.MVVM.ViewModel
             _taskItems = new ObservableCollection<TaskModel>();
 
             string connStr = "server=localhost;user=root;database=dayplotter;port=3306;password=1234";
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new (connStr);
             try
             {
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
-                string sql = String.Format(
+                string sql = string.Format(
                     "UPDATE TEST_TABLE SET COMPLETED=FALSE WHERE REPEAT_TASK LIKE \"%{0}%\" and completed_on != \"{1}\""
                     , day_abbv_chars[(int)(DateTime.Now.DayOfWeek)], DateTime.Today.Date.ToString("yyyy-MM-dd"));
                 new MySqlCommand(sql, conn).ExecuteNonQuery();
@@ -272,9 +273,9 @@ namespace DayPolotter.MVVM.ViewModel
                     if (selItem != null)
                     {
                         int selID = selItem.ID;
-                        string sql = String.Format(
+                        string sql = string.Format(
                             "UPDATE TEST_TABLE SET COMPLETED = true , Completed_on=\"{0}\" WHERE ID={1}", DateTime.Today.Date.ToString("yyyy-MM-dd"), selID);
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        MySqlCommand cmd = new (sql, conn);
                         cmd.ExecuteNonQuery();
                         _taskItems?.RemoveAt(SelectedIndex);
                     }
@@ -293,15 +294,12 @@ namespace DayPolotter.MVVM.ViewModel
                     bool[] repDays = new bool[7] { RepSunday, RepMonday,
                             RepTuesday, RepWednesday, RepThursday, RepFriday, RepSaturday};
                     RepeatFreq = RepeatDayEncrypt(repDays);
-                    string sql = String.Format(
+                    string sql = string.Format(
                         "UPDATE TEST_TABLE SET Repeat_task = \"{0}\" WHERE ID={1}",
                         RepeatFreq, selID);
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    MySqlCommand cmd = new(sql, conn);
                     cmd.ExecuteNonQuery();
-                    int SelectedIndexPrev = SelectedIndex;
-                    _taskItems[SelectedIndex] = new TaskModel
-                    (selItem.ID, TaskEntry, selItem.AddedOn, RepeatFreq, selItem.Completed);
-                    SelectedIndex = SelectedIndexPrev;
+                    _taskItems[SelectedIndex].RepeatDays = RepeatFreq;
                 });
 
                 DelTaskCmd = new RelayCommand(o =>
@@ -315,7 +313,7 @@ namespace DayPolotter.MVVM.ViewModel
                     {
                         MessageBox.Show("Select a task first to update!"); return;
                     }
-                    string sql = String.Format("DELETE FROM TEST_TABLE WHERE ID={0}", selItem.ID);
+                    string sql = string.Format("DELETE FROM TEST_TABLE WHERE ID={0}", selItem.ID);
                     new MySqlCommand(sql, conn).ExecuteNonQuery();
                     _taskItems?.RemoveAt(SelectedIndex);
                 });

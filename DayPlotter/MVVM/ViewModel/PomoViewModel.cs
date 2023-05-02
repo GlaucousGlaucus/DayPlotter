@@ -3,6 +3,7 @@ using DayPolotter.Core;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
@@ -19,8 +20,6 @@ namespace DayPolotter.MVVM.ViewModel
         public RelayCommand SaveCurrentPreset { get; set; }
         public RelayCommand DeletePreset { get; set; }
 
-        private TimeSpan _startedFrom;
-
         private readonly ObservableCollection<TimerPresetModel> _timePresets;
 
         public ObservableCollection<TimerPresetModel> TimePresets
@@ -36,48 +35,19 @@ namespace DayPolotter.MVVM.ViewModel
             set { _selectedPresetIndex = value; OnPropertyChanged(); _setTimers(); }
         }
 
+        public TimerModel PomoTimer = TimerModel.Instance;
 
-
-        public TimeSpan StartedFrom
+        public TimeSpan CurrTime
         {
-            get { return _startedFrom; }
-            set { _startedFrom = value; OnPropertyChanged(); }
+            get { return PomoTimer.CurrentTime; }
+            set { PomoTimer.CurrentTime = value; OnPropertyChanged(); }
         }
 
-        private bool _isNormalTime;
-
-        public bool IsNormalTime
+        public bool IsItNormalTime
         {
-            get { return _isNormalTime; }
-            set { _isNormalTime = value; OnPropertyChanged(); }
+            get { return PomoTimer.IsNormalTime; }
+            set { PomoTimer.IsNormalTime = value; OnPropertyChanged(); }
         }
-
-
-        private double _currentTimeText;
-
-        public double CurrentTimeText
-        {
-            get { return _currentTimeText; }
-            set { _currentTimeText = value; OnPropertyChanged(); }
-        }
-
-
-        private TimeSpan _currentTime;
-
-        public TimeSpan CurrentTime
-        {
-            get { return _currentTime; }
-            set { _currentTime = value; OnPropertyChanged(); }
-        }
-
-
-        private DispatcherTimer _timer;
-        public DispatcherTimer Timer
-        {
-            get { return _timer; }
-            set { _timer = value; OnPropertyChanged(); }
-        }
-
 
         private string _startStopText;
 
@@ -103,27 +73,6 @@ namespace DayPolotter.MVVM.ViewModel
             set { _breakTime = value; OnPropertyChanged(); }
         }
 
-
-        private void _timer_ticks(object sender, EventArgs e)
-        {
-            CurrentTime -= new TimeSpan(0, 0, 1);
-            if (CurrentTime.TotalSeconds <= 0)
-            {
-                _timer.Stop();
-                IsNormalTime = true;
-                StartStopText = StartStopBtnText();
-
-            }
-        }
-
-        private string _btn_start_text = "Play";
-        private string _btn_stop_text = "Pause";
-
-        public string StartStopBtnText()
-        {
-            return _timer.IsEnabled ? _btn_stop_text : _btn_start_text;
-        }
-
         private void _setTimers()
         {
             TimerPresetModel? presetModel = _timePresets.ElementAtOrDefault(SelectedPresetIndex);
@@ -134,8 +83,8 @@ namespace DayPolotter.MVVM.ViewModel
                 return;
             }
             CountDownTime = presetModel.NormalTime;
-            BreakTime = presetModel.BreakTime;
-            if (!_timer.IsEnabled) CurrentTime = CountDownTime;
+            PomoTimer.BreakTime = BreakTime = presetModel.BreakTime;
+            if (!PomoTimer.IsEnabled) PomoTimer.CurrentTime = CountDownTime;
         }
 
         private void readSqlData(MySqlConnection conn)
@@ -166,18 +115,24 @@ namespace DayPolotter.MVVM.ViewModel
             }
         }
 
+        private void OnMySingletonPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PomoTimer.CurrentTime))
+            {
+                OnPropertyChanged(nameof(CurrTime));
+            }
+            if (e.PropertyName == nameof(PomoTimer.IsNormalTime))
+            {
+                OnPropertyChanged(nameof(IsItNormalTime));
+            }
+        }
+
         public PomoViewModel()
         {
-            
             _selectedPresetIndex = 0;
             _timePresets = new ObservableCollection<TimerPresetModel>();
-            
-            _startStopText = _btn_start_text;
-            _isNormalTime = true;
-           
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(1000);
-            _timer.Tick += new EventHandler(_timer_ticks);
+
+            PomoTimer.PropertyChanged += OnMySingletonPropertyChanged;
 
             string connStr = "server=localhost;user=root;database=dayplotter;port=3306;password=1234";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -186,44 +141,34 @@ namespace DayPolotter.MVVM.ViewModel
 
             StartTimer = new RelayCommand(o =>
             {
-                if (_timer.IsEnabled) { _timer.Stop(); }
-                else
-                {
-                    if (CurrentTime.TotalSeconds <= 0) CurrentTime = StartedFrom;
-                    _timer.Start();
-                    StartedFrom = CurrentTime;
-                }
-                StartStopText = StartStopBtnText();
+                PomoTimer.Toggle();
+                StartStopText = PomoTimer.StartStopBtnText();
             });
 
             ResetTimer = new RelayCommand(o =>
             {
-                if (_timer.IsEnabled) _timer.Stop();
-                CurrentTime = StartedFrom;
-                StartStopText = StartStopBtnText();
+                PomoTimer.Reset();
+                StartStopText = PomoTimer.StartStopBtnText();
             });
 
-            BreakTimeTimer = new RelayCommand(_ =>
+            BreakTimeTimer = new RelayCommand(o =>
             {
-                if (_timer.IsEnabled) _timer.Stop();
-                StartedFrom = CurrentTime = BreakTime;
-                _timer.Start();
-                IsNormalTime = false;
-                StartStopText = StartStopBtnText();
+                PomoTimer.Break();
+                StartStopText = PomoTimer.StartStopBtnText();
             });
 
-            SaveCurrentPreset = new RelayCommand(o => 
+            SaveCurrentPreset = new RelayCommand(o =>
             {
-                TimeSpan normTime = _timer.IsEnabled ? StartedFrom : CurrentTime;
+                TimeSpan normTime = PomoTimer.IsEnabled ? PomoTimer.StartedFrom : PomoTimer.CurrentTime;
                 string sql = string.Format("INSERT INTO TIME_PRESETS (NORM, BREAK) VALUES (\"{0}\", \"{1}\")",
                     normTime.ToString(), BreakTime.ToString());
                 new MySqlCommand(sql, conn).ExecuteNonQuery();
                 sql = "SELECT MAX(ID) FROM TIME_PRESETS";
                 if (int.TryParse(new MySqlCommand(sql, conn).ExecuteScalar().ToString(), out int ind))
-                _timePresets.Add(new TimerPresetModel(ind, normTime, BreakTime));
+                    _timePresets.Add(new TimerPresetModel(ind, normTime, BreakTime));
             });
 
-            DeletePreset = new RelayCommand(o => 
+            DeletePreset = new RelayCommand(o =>
             {
                 TimerPresetModel? selItem = _timePresets.ElementAtOrDefault(SelectedPresetIndex);
                 if (selItem == null)
