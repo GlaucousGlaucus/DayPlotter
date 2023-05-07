@@ -1,10 +1,6 @@
 ﻿using DayPlotter.Core;
-using DayPolotter.Core;
-using System;
-using System.ComponentModel;
-using System.Windows.Threading;
 
-namespace DayPolotter.MVVM.ViewModel
+namespace DayPlotter.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {

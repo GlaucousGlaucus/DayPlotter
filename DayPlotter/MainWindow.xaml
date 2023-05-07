@@ -4,13 +4,13 @@
 #FF9900 #FF675B #D6578B 
 #8E5B9A #4A5784 #2F4858
 -->
-<Window x:Class="DayPolotter.MainWindow"
+<Window x:Class="DayPlotter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DayPolotter"
-        xmlns:viewModel="clr-namespace:DayPolotter.MVVM.ViewModel"
+        xmlns:local="clr-namespace:DayPlotter"
+        xmlns:viewModel="clr-namespace:DayPlotter.MVVM.ViewModel"
         mc:Ignorable="d"
         Width="1200" Height="800" 
         Title="DayPlotter"

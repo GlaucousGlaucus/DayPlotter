@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace DayPolotter.Core
+namespace DayPlotter.Core
 {
     class RelayCommand : ICommand
     {

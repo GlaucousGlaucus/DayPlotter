@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Linq;
-using System.Web;
-using System.Windows;
 
-namespace DayPolotter.Converters
+namespace DayPlotter.Converters
 {
     class TimeConverter : IValueConverter
     {

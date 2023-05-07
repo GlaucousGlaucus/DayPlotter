@@ -1,14 +1,13 @@
 ﻿using DayPlotter.MVVM.Models;
-using DayPolotter.Core;
+using DayPlotter.Core;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Threading;
 
-namespace DayPolotter.MVVM.ViewModel
+namespace DayPlotter.MVVM.ViewModel
 {
 
     class PomoViewModel : ObservableObject
@@ -87,7 +86,7 @@ namespace DayPolotter.MVVM.ViewModel
             if (!PomoTimer.IsEnabled) PomoTimer.CurrentTime = CountDownTime;
         }
 
-        private void readSqlData(MySqlConnection conn)
+        private void ReadSqlData(MySqlConnection conn)
         {
             try
             {
@@ -133,10 +132,9 @@ namespace DayPolotter.MVVM.ViewModel
             _timePresets = new ObservableCollection<TimerPresetModel>();
 
             PomoTimer.PropertyChanged += OnMySingletonPropertyChanged;
-
             string connStr = "server=localhost;user=root;database=dayplotter;port=3306;password=1234";
             MySqlConnection conn = new MySqlConnection(connStr);
-            readSqlData(conn);
+            ReadSqlData(conn);
             _setTimers();
 
             StartTimer = new RelayCommand(o =>
@@ -160,8 +158,7 @@ namespace DayPolotter.MVVM.ViewModel
             SaveCurrentPreset = new RelayCommand(o =>
             {
                 TimeSpan normTime = PomoTimer.IsEnabled ? PomoTimer.StartedFrom : PomoTimer.CurrentTime;
-                string sql = string.Format("INSERT INTO TIME_PRESETS (NORM, BREAK) VALUES (\"{0}\", \"{1}\")",
-                    normTime.ToString(), BreakTime.ToString());
+                string sql = $"INSERT INTO TIME_PRESETS (NORM, BREAK) VALUES (\"{normTime}\", \"{BreakTime}\")";  
                 new MySqlCommand(sql, conn).ExecuteNonQuery();
                 sql = "SELECT MAX(ID) FROM TIME_PRESETS";
                 if (int.TryParse(new MySqlCommand(sql, conn).ExecuteScalar().ToString(), out int ind))
@@ -175,7 +172,7 @@ namespace DayPolotter.MVVM.ViewModel
                 {
                     MessageBox.Show("Select a task first to update!"); return;
                 }
-                string sql = string.Format("DELETE FROM TIME_PRESETS WHERE ID={0}", selItem.ID);
+                string sql = $"DELETE FROM TIME_PRESETS WHERE ID={selItem.ID}";
                 new MySqlCommand(sql, conn).ExecuteNonQuery();
                 _timePresets.RemoveAt(SelectedPresetIndex);
             });

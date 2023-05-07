@@ -1,4 +1,4 @@
-﻿namespace DayPolotter.MVVM.ViewModel
+﻿namespace DayPlotter.MVVM.ViewModel
 {
     class HomeViewModel
     {

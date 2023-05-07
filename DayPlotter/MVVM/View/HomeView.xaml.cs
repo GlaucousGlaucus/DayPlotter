@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace DayPolotter.MVVM.View
+namespace DayPlotter.MVVM.View
 {
     public partial class HomeView : UserControl
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DayPolotter.Core
+namespace DayPlotter.Core
 {
     public class ObservableObject : INotifyPropertyChanged
     {

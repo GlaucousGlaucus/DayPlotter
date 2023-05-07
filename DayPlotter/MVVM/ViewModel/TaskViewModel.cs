@@ -1,4 +1,4 @@
-﻿using DayPolotter.Core;
+﻿using DayPlotter.Core;
 using System;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
@@ -6,9 +6,8 @@ using System.Windows;
 using MySql.Data.MySqlClient;
 using System.Linq;
 using DayPlotter.MVVM.Models;
-using System.Windows.Controls;
 
-namespace DayPolotter.MVVM.ViewModel
+namespace DayPlotter.MVVM.ViewModel
 {
 
     class TaskViewModel : ObservableObject
@@ -96,7 +95,6 @@ namespace DayPolotter.MVVM.ViewModel
             get { return _selectedIndex; }
             set
             {
-                System.Diagnostics.Debug.WriteLine(string.Format("Updating SI -> {0}", value));
                 _selectedIndex = value;
                 if (value >= 0)
                 {

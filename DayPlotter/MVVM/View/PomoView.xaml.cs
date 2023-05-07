@@ -1,11 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
-using System;
 using System.Linq;
-using System.Windows;
 
-namespace DayPolotter.MVVM.View
+namespace DayPlotter.MVVM.View
 {
     public partial class PomoView : UserControl
     {

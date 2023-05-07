@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace DayPolotter
+namespace DayPlotter
 {
     public partial class MainWindow : Window
     {

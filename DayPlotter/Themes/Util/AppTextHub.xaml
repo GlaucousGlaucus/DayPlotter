@@ -5,27 +5,25 @@
                   Foreground="#b35000"
                                       FontFamily="ComicSansMs"
                                       FontSize="20">
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-        <Paragraph>This app provides you with these Qol Features:</Paragraph>
-        <List>
-            <ListItem>
-                <Paragraph>Pomodoro Timer</Paragraph>
-            </ListItem>
-            <ListItem>
-                <Paragraph>A Task Checklist</Paragraph>
-            </ListItem>
-            <ListItem>
-                <Paragraph>Focus Mode</Paragraph>
-            </ListItem>
-            <ListItem>
-                <Paragraph>Your Performance Status</Paragraph>
-            </ListItem>
-        </List>
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
-        <Paragraph>Planning your day can be overwhelming, but this app makes it easy. With a user-friendly interface, you can quickly input your schedule, to-do list, and goals for the day. You can set reminders and track your progress as you complete tasks throughout the day. The app also offers suggestions for time management and prioritization, helping you to optimize your productivity. By using this app, you can reduce stress and increase efficiency, ensuring that you accomplish everything you need to in a timely and organized manner.</Paragraph>
+        <Paragraph>Welcome to Day Plotter, your ultimate app for planning and managing your day. Our app is designed to help you optimize your productivity, manage your tasks, and analyze your habits so you can make the most out of your day. With our easy-to-use interface and powerful features, you can stay on top of your work, and stay organized like never before.</Paragraph>
+
+        <Paragraph>At Day Plotter, we believe that effective time management is essential for achieving success. Our app offers multiple features to help you manage your time better, from a built-in Pomodoro timer to a task tab that you can use to organize your day.</Paragraph>
+
+        <Paragraph>The Pomodoro Timer is a time management technique that breaks work into intervals, usually 25 minutes long, followed by short breaks. The technique is designed to help you focus on your work and reduce distractions. With Day Plotter's Pomodoro Timer, you can choose from multiple presets that are optimized for different types of work, and customize them to suit your needs. You can choose the length of the work interval, the duration of the break, and the number of intervals before a long break.</Paragraph>
+
+        <Paragraph>Our Pomodoro Timer also tracks the number of Pomodoros you've completed, the time you've spent working, and the number of breaks you've taken. This data can be used to analyze your productivity and improve your work habits.</Paragraph>
+
+        <Paragraph>The task tab in Day Plotter is where you can add and manage your daily tasks. You can create new tasks, add descriptions, and set deadlines for each task. You can even put them on repeat for selected days, so you never forget to do something important. With our task tab, you can prioritize your work and stay on top of everything.</Paragraph>
+
+        <Paragraph>In addition to managing your tasks, Day Plotter also helps you analyze your habits. Our app tracks the number of breaks you've taken, the apps you've used, and the websites you've visited. This data can be used to identify patterns in your work habits and help you optimize your work style. For example, if you notice that you spend too much time on social media during your workday, you can use Day Plotter to limit your access to these sites during work hours.</Paragraph>
+
+        <Paragraph>Day Plotter's analytics feature provides you with detailed reports on your productivity, including the number of Pomodoros completed, the time you've spent working, and the number of breaks you've taken. You can use this information to identify areas where you can improve your productivity and make changes to your work habits.</Paragraph>
+
+        <Paragraph>Our app also includes a feature called "Focus Mode," which blocks distractions on your computer. You can choose to block certain websites, apps, or notifications during your work intervals, helping you stay focused and avoid distractions.</Paragraph>
+
+        <Paragraph>At Day Plotter, we believe that the key to effective time management is understanding how you spend your time. Our app is designed to help you analyze your work habits, optimize your productivity, and achieve your goals. Whether you're a student, a professional, or just someone who wants to stay organized, Day Plotter has everything you need to plan your day, manage your tasks, and improve your productivity.</Paragraph>
+
+        <Paragraph>In conclusion, Day Plotter is a powerful app that can help you optimize your productivity, manage your tasks, and analyze your work habits. Our Pomodoro Timer, task tab, and analytics feature are all designed to help you make the most out of your day. By using Day Plotter, you can stay on top of your work, reduce distractions, and achieve your goals. So why wait? Try Day Plotter today and see how it can change the way you work!</Paragraph>
     </FlowDocument>
 
     <FlowDocument x:Key="App.Doc.TaskInfo" Background="Transparent"

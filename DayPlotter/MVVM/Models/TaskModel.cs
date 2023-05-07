@@ -1,8 +1,5 @@
-﻿using DayPolotter.Core;
+﻿using DayPlotter.Core;
 using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace DayPlotter.MVVM.Models
 {

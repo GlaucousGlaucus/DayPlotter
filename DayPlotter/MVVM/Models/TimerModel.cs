@@ -1,4 +1,4 @@
-﻿using DayPolotter.Core;
+﻿using DayPlotter.Core;
 using System;
 using System.Windows.Threading;
 
@@ -127,7 +127,6 @@ namespace DayPlotter.MVVM.Models
                 _timer.Stop();
                 IsNormalTime = true;
             }
-            System.Diagnostics.Debug.WriteLine("Ticks: " + CurrentTime.ToString());
         }
 
         public string StartStopBtnText()
